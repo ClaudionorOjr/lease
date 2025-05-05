@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read # apenas leitura do repositório para checkout
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write      # Para criar GitHub releases
+      issues: write        # Para comentar sobre issues
+      pull-requests: write # Para comentar sobre PRs
+
+    steps:
+      # 1. Checkout do código
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # Garante que todo o histórico de commits esteja disponível para o semantic-release
+
+      # 2. Debug Workflow Run (para inspecionar variáveis do GitHub Actions)
+      - name: Debug Workflow Run
+        run: |
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Workflow Run Job: ${{ github.job }}"
+          echo "Workflow Run Ref: ${{ github.ref }}"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Event Name: ${{ github.event_name }}"
+          echo "Actor: ${{ github.actor }}"
+
+      # 3. Setup do Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+        
+      # 4. Instalar as dependências (usando npm ci)
+      - name: Install Dependencies
+        run: npm ci
+
+      # 5. Verificação de integridade dos pacotes
+      - name: Verify Dependency Integrity
+        run: npm audit --audit-level=low
+
+      # 6. Executar o semantic-release
+      - name: Run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release

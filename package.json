@@ -1,0 +1,31 @@
+{
+  "name": "lease",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "semantic-release": "^24.2.3",
+    "turbo": "^2.5.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@11.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
