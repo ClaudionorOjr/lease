@@ -1,0 +1,10 @@
+{
+	"extends": ["../../biome.json"],
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single",
+			"arrowParentheses": "always",
+			"jsxQuoteStyle": "double"
+		}
+	}
+}
