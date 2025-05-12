@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/ClaudionorOjr/lease/compare/v1.0.0...v1.1.0) (2025-05-12)
+
+
+### Features
+
+* **client:** created solicitations features: page with form for creation and updating solicitations ([36012ef](https://github.com/ClaudionorOjr/lease/commit/36012ef3dd810701b05c5282d668a727b57ac05f))
+
 # 1.0.0 (2025-05-05)
 
 
