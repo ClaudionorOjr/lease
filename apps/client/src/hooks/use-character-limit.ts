@@ -26,6 +26,7 @@ export function useCharacterLimit({
 
   return {
     value,
+    resetValue: setValue,
     characterCount,
     handleChange,
     maxLength,

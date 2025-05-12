@@ -1,13 +1,12 @@
 import { getUser } from '@/http/get-user';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 export async function isAuthenticated() {
   return !!(await cookies()).get('accessToken')?.value;
 }
 
 export async function auth() {
-  const accessToken = (await cookies()).get('accessToken')?.value;
+  // const accessToken = (await cookies()).get('accessToken')?.value;
 
   // 'if (!accessToken) {
   //   return redirect('/auth/sign-in');

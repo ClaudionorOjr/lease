@@ -3,18 +3,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { fetchServices } from '@/http/services/fetch-services';
 import { DialogTrigger } from '@radix-ui/react-dialog';
-import {
-  CirclePlus,
-  Info,
-  MessageCircleWarning,
-  Pen,
-  Trash,
-} from 'lucide-react';
+import { CirclePlus, Info, Pen, Trash } from 'lucide-react';
 import { deleteServiceAction } from './actions';
 import { ServiceForm } from './service-form';
 
 export default async function ServicesPage() {
   const { services } = await fetchServices();
+
   return (
     <div className="flex flex-col gap-2">
       {services.length === 0 ? (
@@ -66,7 +61,15 @@ export default async function ServicesPage() {
                   </DialogTrigger>
                   <DialogContent>
                     <DialogTitle>Edit service</DialogTitle>
-                    <ServiceForm service={service} />
+                    <ServiceForm
+                      isEditing
+                      initialData={{
+                        id: service.id,
+                        name: service.name,
+                        description: service.description,
+                        price: service.priceInCents,
+                      }}
+                    />
                   </DialogContent>
                 </Dialog>
                 <form action={deleteServiceAction.bind(null, service.id)}>
@@ -88,10 +91,13 @@ export default async function ServicesPage() {
                   {service.description}
                 </span>
                 <span className="font-bold">
-                  {(service.priceInCents / 100).toLocaleString('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL',
-                  })}
+                  {(Number(service.priceInCents) / 100).toLocaleString(
+                    'pt-BR',
+                    {
+                      style: 'currency',
+                      currency: 'BRL',
+                    },
+                  )}
                 </span>
               </CardContent>
             </Card>

@@ -32,3 +32,8 @@ Configuração no `package.json`:
   ...
 }
 ```
+
+```bash
+  git rm -r --cached apps/client
+  git add apps/client
+```
