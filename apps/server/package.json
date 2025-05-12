@@ -10,7 +10,7 @@
     "db:migrate": "npm run env:load prisma migrate dev",
     "env:load": "dotenv -e ../../.env --",
     "build": "tsup",
-    "start": "node dist/server.js"
+    "start": "node --env-file ../../.env dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@faker-js/faker": "^9.7.0",
     "@repo/tsconfig": "*",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^22.14.1",
     "dotenv-cli": "^8.0.0",
     "prisma": "^6.6.0",
@@ -34,7 +35,7 @@
     "@fastify/jwt": "^9.1.0",
     "@prisma/client": "^6.6.0",
     "@repo/env": "*",
-    "bcrypt-ts": "^6.0.0",
+    "bcrypt": "^6.0.0",
     "dayjs": "^1.11.13",
     "fastify": "^5.3.2",
     "fastify-type-provider-zod": "^4.0.2",

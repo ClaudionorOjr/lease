@@ -1,6 +1,6 @@
 import { fakerPT_BR as faker } from '@faker-js/faker';
 import { PrismaClient } from '@prisma/client';
-import { compare } from 'bcrypt-ts';
+import { compare } from 'bcrypt';
 import type { FastifyInstance } from 'fastify';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
