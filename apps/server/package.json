@@ -8,7 +8,9 @@
     "test:watch": "vitest",
     "db:studio": "npm run env:load prisma studio",
     "db:migrate": "npm run env:load prisma migrate dev",
-    "env:load": "dotenv -e ../../.env --"
+    "env:load": "dotenv -e ../../.env --",
+    "build": "tsup",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +23,7 @@
     "@types/node": "^22.14.1",
     "dotenv-cli": "^8.0.0",
     "prisma": "^6.6.0",
+    "tsup": "^8.4.0",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "vite-tsconfig-paths": "^5.1.4",
