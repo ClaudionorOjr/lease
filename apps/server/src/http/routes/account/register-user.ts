@@ -1,4 +1,4 @@
-import { hash } from 'bcrypt-ts';
+import { hash } from 'bcrypt';
 import type { FastifyInstance } from 'fastify';
 import type { ZodTypeProvider } from 'fastify-type-provider-zod';
 import { prisma } from 'src/lib/prisma';

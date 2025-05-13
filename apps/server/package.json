@@ -34,7 +34,7 @@
     "@fastify/jwt": "^9.1.0",
     "@prisma/client": "^6.6.0",
     "@repo/env": "*",
-    "bcrypt-ts": "^6.0.0",
+    "bcrypt": "^6.0.0",
     "dayjs": "^1.11.13",
     "fastify": "^5.3.2",
     "fastify-type-provider-zod": "^4.0.2",
