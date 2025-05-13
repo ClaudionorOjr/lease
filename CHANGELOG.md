@@ -5,6 +5,13 @@
 
 * **server:** change bcrypt-ts to bcrypt for deployment compatibility ([d42140d](https://github.com/ClaudionorOjr/lease/commit/d42140dcd8b5e1ab262e30f725373f0b6764d5f5))
 
+## [1.1.1](https://github.com/ClaudionorOjr/lease/compare/v1.1.0...v1.1.1) (2025-05-13)
+
+
+### Bug Fixes
+
+* **server:** change bcrypt-ts to bcrypt for deployment compatibility ([d42140d](https://github.com/ClaudionorOjr/lease/commit/d42140dcd8b5e1ab262e30f725373f0b6764d5f5))
+
 # [1.1.0](https://github.com/ClaudionorOjr/lease/compare/v1.0.0...v1.1.0) (2025-05-12)
 
 
