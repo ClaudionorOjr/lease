@@ -66,7 +66,7 @@ export default async function ServicesPage() {
                       initialData={{
                         id: service.id,
                         name: service.name,
-                        description: service.description,
+                        description: service.description ?? undefined,
                         price: service.priceInCents,
                       }}
                     />

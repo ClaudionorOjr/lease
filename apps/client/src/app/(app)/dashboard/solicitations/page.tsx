@@ -88,7 +88,8 @@ export default async function SolicitationsPage() {
                 </div>
                 <div className="col-span-4">
                   <Label>Description</Label>
-                  {solicitation.description?.length > 0 ? (
+                  {solicitation.description &&
+                  solicitation.description.length > 0 ? (
                     <p className="text-muted-foreground">
                       {solicitation.description}
                     </p>

@@ -11,7 +11,7 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
-import packagejson from '../../package.json';
+import packagejson from '../../../../package.json';
 
 const navs = [
   {
