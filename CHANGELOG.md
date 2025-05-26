@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/ClaudionorOjr/lease/compare/v1.1.0...v1.2.0) (2025-05-26)
+
+
+### Bug Fixes
+
+* **server:** change bcrypt-ts to bcrypt for deployment compatibility ([d42140d](https://github.com/ClaudionorOjr/lease/commit/d42140dcd8b5e1ab262e30f725373f0b6764d5f5))
+
+
+### Features
+
+* **client:** tables added for data visualization ([d043eec](https://github.com/ClaudionorOjr/lease/commit/d043eec4f92d5f9ba053eddc13e3dead70a2ba1d))
+
 ## [1.1.1](https://github.com/ClaudionorOjr/lease/compare/v1.1.0...v1.1.1) (2025-05-13)
 
 
