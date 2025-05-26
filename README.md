@@ -37,3 +37,37 @@ Configuração no `package.json`:
   git rm -r --cached apps/client
   git add apps/client
 ```
+
+### Testando código
+
+```tsx
+{Array.from({ length: 3 }).map((_, i) => (
+  <Collapsible key={i} asChild>
+    <TableBody className="border-t">
+      <TableRow>
+        <TableCell>
+          <Button variant="ghost" size="icon">
+            <SquareArrowOutUpRight className="size-4" />
+          </Button>
+        </TableCell>
+        <TableCell className="font-mono text-xs font-medium">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </TableCell>
+        <TableCell className="text-muted-foreground">
+          02/05/2025 - 12/05/2025
+        </TableCell>
+        <TableCell>Pending</TableCell>
+        <TableCell>
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost" size="icon">
+              <ChevronsUpDown className="size-4" />
+            </Button>
+          </CollapsibleTrigger>
+        </TableCell>
+      </TableRow>
+
+      <DataTableCollapsibleRow />
+    </TableBody>
+  </Collapsible>
+))}
+```

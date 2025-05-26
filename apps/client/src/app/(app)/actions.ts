@@ -10,7 +10,7 @@ import { HTTPError, type KyResponse } from 'ky';
 import { z } from 'zod';
 
 const leasingSchema = z.object({
-  lessee: z.string().refine((value) => value.trim().split(' ').length >= 2, {
+  lessee: z.string().refine((value) => value.trim().split(/\s+/).length >= 2, {
     message: 'Please, provide a full name',
   }),
   cpf: z.string().refine((value) => value.replace(/\D/g, '').length === 11, {

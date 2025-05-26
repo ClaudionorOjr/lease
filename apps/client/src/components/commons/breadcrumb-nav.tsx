@@ -31,7 +31,7 @@ export function BreadcrumbNav() {
           const isLastPath = pathnames.length === index + 1;
 
           return (
-            <Fragment key={index}>
+            <Fragment key={item}>
               <BreadcrumbItem>
                 {!isLastPath ? (
                   <BreadcrumbLink asChild>
