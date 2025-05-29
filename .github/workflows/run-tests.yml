@@ -1,0 +1,64 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main
+      - alpha
+
+defaults:
+  run:
+    working-directory: apps/server
+
+jobs:
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      
+      - name: Debug workflow run
+        run : |
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Workflow Run Job: ${{ github.job }}"
+          echo "Workflow Run Ref: ${{ github.ref }}"
+      
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run test
+
+  e2e-tests:
+    name: E2E Tests
+    needs: unit-tests
+    if: ${{ needs.unit-tests.result == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      
+      - name: Debug workflow run
+        run : |
+          echo "Workflow: ${{ github.workflow }}"
+          echo "Workflow Run Job: ${{ github.job }}"
+          echo "Workflow Run Ref: ${{ github.ref }}"
+      
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run e2e tests
+        run: npm run test:e2e
