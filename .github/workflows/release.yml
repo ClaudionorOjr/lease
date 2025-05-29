@@ -1,10 +1,10 @@
 name: Release
 
 on:
-  push:
-    branches:
-      - main
-      - alpha
+  workflow_run:
+    workflows: ['Run Tests']
+    types:
+      - completed
 
 permissions:
   contents: read # apenas leitura do repositório para checkout
@@ -12,6 +12,7 @@ permissions:
 jobs:
   release:
     name: Release
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write      # Para criar GitHub releases
@@ -20,10 +21,11 @@ jobs:
 
     steps:
       # 1. Checkout do código
-      - name: Checkout Code
+      - name: Checkout Branch Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0   # Garante que todo o histórico de commits esteja disponível para o semantic-release
+          ref: ${{ github.event.workflow_run.head_sha }}
 
       # 2. Debug Workflow Run (para inspecionar variáveis do GitHub Actions)
       - name: Debug Workflow Run
@@ -54,4 +56,16 @@ jobs:
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+        run: |
+          BRANCH="${{ github.event.workflow_run.head_branch }}"
+
+          if [[ "$BRANCH" == "main" ]]; then
+            echo "Creating release for main"
+            npx semantic-release
+          elif [[ "$BRANCH" == "alpha" ]]; then
+            echo "Creating prerelease for alpha"
+            npx semantic-release --branch alpha
+          else
+            echo "No release for branch $BRANCH"
+            exit 0
+          fi
