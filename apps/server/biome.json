@@ -1,10 +1,8 @@
 {
-	"extends": ["../../biome.json"],
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "single",
-			"arrowParentheses": "always",
-			"semicolons": "always"
-		}
-	}
+  "extends": ["../../biome.json"],
+  "javascript": {
+    "formatter": {
+      "semicolons": "always"
+    }
+  }
 }

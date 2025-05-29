@@ -1,13 +1,16 @@
-import fastifyJwt from '@fastify/jwt';
+import { fastifyJwt } from '@fastify/jwt';
 import fastify from 'fastify';
 import {
   type ZodTypeProvider,
+  jsonSchemaTransform,
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod';
 
-import fastifyCors from '@fastify/cors';
+import { fastifyCors } from '@fastify/cors';
+import { fastifySwagger } from '@fastify/swagger';
 import { env } from '@repo/env';
+import ScalarApiReference from '@scalar/fastify-api-reference';
 import { routes } from './http/routes';
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
@@ -20,6 +23,32 @@ app.register(fastifyJwt, {
 });
 
 app.register(fastifyCors);
+
+app.register(fastifySwagger, {
+  openapi: {
+    info: {
+      title: 'Lease server',
+      version: '1.0.0',
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+  },
+  transform: jsonSchemaTransform,
+});
+
+app.register(ScalarApiReference, {
+  routePrefix: '/docs',
+  configuration: {
+    theme: 'purple',
+  },
+});
 
 app.register(routes);
 
