@@ -28,9 +28,17 @@
       "include": ["apps/server/**"],
       "linter": {
         "rules": {
+          "suspicious": {
+            "noExplicitAny": "warn"
+          },
           "style": {
             "noNonNullAssertion": "off"
           }
+        }
+      },
+      "javascript": {
+        "parser": {
+          "unsafeParameterDecoratorsEnabled": true
         }
       }
     }

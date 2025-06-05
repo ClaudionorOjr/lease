@@ -1,6 +1,8 @@
 {
   "extends": ["@repo/tsconfig/base.json"],
   "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "baseUrl": ".",
@@ -8,6 +10,7 @@
       "@/*": ["./src/*"],
       "@/core/*": ["./src/core/*"],
       "@/account/*": ["./src/domain/account/*"],
+      "@/infra/*": ["./src/infra/*"],
       "@/test/*": ["./test/*"]
     }
   },

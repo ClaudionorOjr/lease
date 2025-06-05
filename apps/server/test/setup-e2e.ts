@@ -1,11 +1,12 @@
+import 'reflect-metadata';
 import { execSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
-import { PrismaClient } from '@prisma/client';
+import type { DatabaseProvider } from '@/infra/database/database-provider';
+import { PrismaService } from '@/infra/database/prisma';
+import { container } from 'tsyringe';
 import { afterAll, beforeAll } from 'vitest';
 
 const schemaId = randomUUID();
-
-let databaseUrl: string;
 
 function generateUniqueDatabaseUrl(schemaId: string) {
   if (!process.env.DATABASE_URL) {
@@ -19,26 +20,29 @@ function generateUniqueDatabaseUrl(schemaId: string) {
   return url.toString();
 }
 
-beforeAll(async () => {
-  databaseUrl = generateUniqueDatabaseUrl(schemaId);
+let prisma: PrismaService;
 
-  process.env.DATABASE_URL = databaseUrl;
+beforeAll(async () => {
+  process.env.DATABASE_URL = generateUniqueDatabaseUrl(schemaId);
+
+  container.clearInstances(); // ? ou container.reset() se quiser limpar tudo
+
+  // ? 🔁 Registra de novo com a DATABASE_URL atual
+  container.registerSingleton<DatabaseProvider>('Prisma', PrismaService);
+
+  prisma = container.resolve(PrismaService);
 
   // ? Diferente do 'dev', o 'deploy' vai somente rodar as migrations, sem verificar o schema e gerar novas migrations
   execSync('npx prisma migrate deploy');
+
+  await prisma.onModuleInit();
 });
 
 afterAll(async () => {
-  const prisma = new PrismaClient({
-    datasources: {
-      db: {
-        url: databaseUrl,
-      },
-    },
-  });
-
   // ? Necessário ser o executeRawUnsafe, pq esta é uma ação perigosa, onde vai deletar um schema do banco
   await prisma.$queryRawUnsafe(`DROP SCHEMA IF EXISTS "${schemaId}" CASCADE`);
 
-  await prisma.$disconnect();
+  await prisma.onModuleDestroy();
 });
+
+export { prisma };

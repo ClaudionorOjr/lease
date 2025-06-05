@@ -2,21 +2,22 @@ import { Entity } from '@/core/entities/entity';
 import type { Optional } from '@/core/types/optional';
 
 export interface UserProps {
-  fullname: string;
+  fullName: string;
   email: string;
   password: string;
+  phone: string;
   createdAt: Date;
-  updatedAt?: Date;
+  updatedAt?: Date | null;
 }
 
 export class User extends Entity<UserProps> {
   /* GETTERS & SETTERS */
-  get fullname() {
-    return this.props.fullname;
+  get fullName() {
+    return this.props.fullName;
   }
 
-  set fullname(fullname: string) {
-    this.props.fullname = fullname;
+  set fullName(fullName: string) {
+    this.props.fullName = fullName;
     this.touch();
   }
 
@@ -30,6 +31,15 @@ export class User extends Entity<UserProps> {
 
   set password(password: string) {
     this.props.password = password;
+    this.touch();
+  }
+
+  get phone() {
+    return this.props.phone;
+  }
+
+  set phone(phone: string) {
+    this.props.phone = phone;
     this.touch();
   }
 
