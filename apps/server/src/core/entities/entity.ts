@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 
-export class Entity<Props> {
+export abstract class Entity<Props> {
   private _id: string;
   protected props: Props;
 

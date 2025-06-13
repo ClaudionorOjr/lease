@@ -22,8 +22,8 @@ model User {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
 
-  schedulings Scheduling[]
-  services    Service[]
+  leases   Lease[]
+  services Service[]
 
   @@map("users")
 }
@@ -32,13 +32,13 @@ model Service {
   id           String  @id @default(uuid())
   name         String
   description  String?
-  priceInCents Decimal @map("price_in_cents")
+  priceInCents Int     @map("price_in_cents")
 
   createdBy String @map("created_by")
   user      User   @relation(fields: [createdBy], references: [id])
 
   solicitations Solicitation[]
-  schedulings   Scheduling[]
+  leases        Lease[]
 
   @@map("services")
 }
@@ -51,7 +51,7 @@ enum SolicitationStatus {
 
 model Solicitation {
   id          String             @id @default(uuid())
-  lessor      String
+  lessee      String
   cpf         String
   email       String?
   phone       String
@@ -62,18 +62,18 @@ model Solicitation {
   createdAt   DateTime           @default(now()) @map("created_at")
   updatedAt   DateTime?          @updatedAt @map("updated_at")
 
-  serviceId   String?      @map("service_id")
-  service     Service?     @relation(fields: [serviceId], references: [id])
-  schedulings Scheduling[]
+  serviceId String?  @map("service_id")
+  service   Service? @relation(fields: [serviceId], references: [id])
+  leases    Lease[]
 
   @@index([status])
   @@index([startDate, endDate])
   @@map("solicitations")
 }
 
-model Scheduling {
+model Lease {
   id           String    @id @default(uuid())
-  lessor       String
+  lessee       String
   cpf          String
   email        String?
   phone        String
@@ -93,5 +93,5 @@ model Scheduling {
   user           User          @relation(fields: [createdBy], references: [id])
 
   @@index([startDate, endDate])
-  @@map("schedulings")
+  @@map("leases")
 }

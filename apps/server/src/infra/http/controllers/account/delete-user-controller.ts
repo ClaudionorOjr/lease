@@ -1,7 +1,7 @@
 import { DeleteUser } from '@/domain/account/application/use-cases/delete-user';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { container } from 'tsyringe';
-import type { DeleteUserRoute } from '../../schemas/delete-user-schema';
+import type { DeleteUserRoute } from '../../schemas/account/delete-user-schema';
 
 export async function deleteUserController(
   request: FastifyRequest<DeleteUserRoute>,

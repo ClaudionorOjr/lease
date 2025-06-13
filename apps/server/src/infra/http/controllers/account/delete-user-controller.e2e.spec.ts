@@ -1,7 +1,7 @@
 import { UserFactory } from '@/test/factories/make-user';
 import { prisma } from '@/test/setup-e2e';
 import type { FastifyInstance } from 'fastify';
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it, test } from 'vitest';
 
 describe('Delete user', () => {
   let app: FastifyInstance;
@@ -18,7 +18,7 @@ describe('Delete user', () => {
     await app.close();
   });
 
-  it('should be able to delete an user', async () => {
+  test('[DELETE] /user/:userId', async () => {
     const user = await userFactory.makePrismaUser();
 
     const accessToken = app.jwt.sign({ sub: user.id }, { expiresIn: '7d' });
@@ -31,7 +31,6 @@ describe('Delete user', () => {
       },
     });
 
-    console.log(response.body);
     expect(response.statusCode).toBe(204);
   });
 });

@@ -41,6 +41,7 @@
     "@repo/env": "*",
     "@scalar/fastify-api-reference": "^1.29.3",
     "bcrypt": "^6.0.0",
+    "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "fastify": "^5.3.2",
     "fastify-type-provider-zod": "^4.0.2",

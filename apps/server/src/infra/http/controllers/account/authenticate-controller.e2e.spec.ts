@@ -1,21 +1,21 @@
 import { fakerPT_BR as faker } from '@faker-js/faker';
 import type { FastifyInstance } from 'fastify';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 
 describe('Authenticate user', () => {
   let app: FastifyInstance;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     app = (await import('@/infra/server.ts')).app;
 
     await app.ready();
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     await app.close();
   });
 
-  it('should be able to authenticate user', async () => {
+  test('[POST] /sessions', async () => {
     const payload = {
       fullName: faker.person.fullName(),
       email: faker.internet.email(),
@@ -44,7 +44,7 @@ describe('Authenticate user', () => {
       },
     });
 
-    console.log(response.json());
+    // console.log(response.json());
     expect(response.statusCode).toBe(200);
     expect(JSON.parse(response.body)).toEqual({
       accessToken: expect.any(String),

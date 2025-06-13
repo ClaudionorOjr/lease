@@ -5,7 +5,7 @@ import { makeUser } from '@/test/factories/make-user';
 import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { Authenticate } from './authenticate';
-import { WrongCredentialError } from './errors/account-errors';
+import { WrongCredentialsError } from './errors/account-errors';
 
 describe('Authenticate user use case', () => {
   let usersRepository: InMemoryUsersRepository;
@@ -46,7 +46,7 @@ describe('Authenticate user use case', () => {
     });
 
     expect(result.isFailure()).toBe(true);
-    expect(result.value).toBeInstanceOf(WrongCredentialError);
+    expect(result.value).toBeInstanceOf(WrongCredentialsError);
   });
 
   it('should not be able to authenticate with wrong password', async () => {
@@ -56,6 +56,6 @@ describe('Authenticate user use case', () => {
     });
 
     expect(result.isFailure()).toBe(true);
-    expect(result.value).toBeInstanceOf(WrongCredentialError);
+    expect(result.value).toBeInstanceOf(WrongCredentialsError);
   });
 });

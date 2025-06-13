@@ -1,3 +1,4 @@
+# TODO Criar variáveis de ambiente para postgresql
 services:
   pg:
     image: bitnami/postgresql:latest

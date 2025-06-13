@@ -7,11 +7,11 @@ import { editUserController } from '../controllers/account/edit-user-controller'
 import { getProfileController } from '../controllers/account/get-profile-controller';
 import { registerUserController } from '../controllers/account/register-user-controller';
 import { verifyJWT } from '../middleware/verify-jwt';
-import { authenticateSchema } from '../schemas/authenticate-schema';
-import { deleteUserSchema } from '../schemas/delete-user-schema';
-import { editUserSchema } from '../schemas/edit-user-schema';
-import { getProfileSchema } from '../schemas/get-profile-schema';
-import { registerUserSchema } from '../schemas/register-user-schema';
+import { authenticateSchema } from '../schemas/account/authenticate-schema';
+import { deleteUserSchema } from '../schemas/account/delete-user-schema';
+import { editUserSchema } from '../schemas/account/edit-user-schema';
+import { getProfileSchema } from '../schemas/account/get-profile-schema';
+import { registerUserSchema } from '../schemas/account/register-user-schema';
 
 export async function accountRoutes(app: FastifyInstance) {
   /* Register user */

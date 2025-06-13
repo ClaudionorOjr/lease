@@ -4,7 +4,7 @@ export class UserAlreadyExistsError extends Error {
   }
 }
 
-export class WrongCredentialError extends Error {
+export class WrongCredentialsError extends Error {
   constructor() {
     super('Credentials are not valid.');
   }

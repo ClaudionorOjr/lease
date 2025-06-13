@@ -1,5 +1,5 @@
 import { UserFactory } from '@/test/factories/make-user';
-import { prisma } from '@/test/setup-e2e';
+import { prisma, showLogs } from '@/test/setup-e2e';
 import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 
@@ -31,8 +31,6 @@ describe('Get profile', () => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-
-    console.log(response.body);
 
     expect(response.statusCode).toBe(200);
     expect(JSON.parse(response.body)).toEqual({

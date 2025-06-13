@@ -8,6 +8,31 @@ import { afterAll, beforeAll } from 'vitest';
 
 const schemaId = randomUUID();
 
+function showLogs(
+  logs: Array<'query' | 'info' | 'warn' | 'error'> = ['query'],
+) {
+  if (logs.includes('query')) {
+    prisma.$on('query', (e) => {
+      console.log(`[QUERY] ${e.query} — ${e.duration}ms — ${e.params}`);
+    });
+  }
+  if (logs.includes('info')) {
+    prisma.$on('info', (e) => {
+      console.log(`[INFO] ${e.message}`);
+    });
+  }
+  if (logs.includes('warn')) {
+    prisma.$on('warn', (e) => {
+      console.log(`[WARN] ${e.message}`);
+    });
+  }
+  if (logs.includes('error')) {
+    prisma.$on('error', (e) => {
+      console.log(`[ERROR] ${e.message}`);
+    });
+  }
+}
+
 function generateUniqueDatabaseUrl(schemaId: string) {
   if (!process.env.DATABASE_URL) {
     throw new Error('Please, provide a DATABASE_URL environment variable!');
@@ -45,4 +70,4 @@ afterAll(async () => {
   await prisma.onModuleDestroy();
 });
 
-export { prisma };
+export { prisma, showLogs };

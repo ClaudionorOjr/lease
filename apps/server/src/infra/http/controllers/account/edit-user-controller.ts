@@ -1,7 +1,7 @@
 import { EditUser } from '@/domain/account/application/use-cases/edit-user';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { container } from 'tsyringe';
-import type { EditUserRoute } from '../../schemas/edit-user-schema';
+import type { EditUserRoute } from '../../schemas/account/edit-user-schema';
 
 export async function editUserController(
   request: FastifyRequest<EditUserRoute>,

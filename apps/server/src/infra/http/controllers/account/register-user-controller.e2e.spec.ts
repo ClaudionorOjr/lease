@@ -1,4 +1,4 @@
-import { prisma } from '@/test/setup-e2e';
+import { prisma, showLogs } from '@/test/setup-e2e';
 import { fakerPT_BR as faker } from '@faker-js/faker';
 import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
@@ -9,9 +9,7 @@ describe('Register user', () => {
   beforeAll(async () => {
     app = (await import('@/infra/server.ts')).app;
 
-    prisma.$on('query', (e) => {
-      console.log(`[QUERY] ${e.query} — ${e.params}`);
-    });
+    // showLogs();
 
     await app.ready();
   });

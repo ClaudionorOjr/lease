@@ -4,6 +4,7 @@ import { fastifyJwt } from '@fastify/jwt';
 import fastify from 'fastify';
 import {
   type ZodTypeProvider,
+  createJsonSchemaTransformObject,
   jsonSchemaTransform,
   serializerCompiler,
   validatorCompiler,
@@ -15,16 +16,19 @@ import { env } from '@repo/env';
 import ScalarApiReference from '@scalar/fastify-api-reference';
 import { errorHandler } from './http/error-handler';
 import { routes } from './http/routes';
+import { schemas } from './http/schemas/entities';
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 app.setSerializerCompiler(serializerCompiler);
 app.setValidatorCompiler(validatorCompiler);
 
+// TODO Alterar tipo de secret para chave publico/privada
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 });
 
+// TODO Configurar Cors
 app.register(fastifyCors);
 
 app.register(fastifySwagger, {
@@ -32,6 +36,7 @@ app.register(fastifySwagger, {
     info: {
       title: 'Lease server',
       version: '1.0.0',
+      description: 'Lease server API',
     },
     components: {
       securitySchemes: {
@@ -44,6 +49,7 @@ app.register(fastifySwagger, {
     },
   },
   transform: jsonSchemaTransform,
+  transformObject: createJsonSchemaTransformObject({ schemas }),
 });
 
 /* REFERENCE */

@@ -10,6 +10,7 @@
       "@/*": ["./src/*"],
       "@/core/*": ["./src/core/*"],
       "@/account/*": ["./src/domain/account/*"],
+      "@/lease/*": ["./src/domain/lease/*"],
       "@/infra/*": ["./src/infra/*"],
       "@/test/*": ["./test/*"]
     }

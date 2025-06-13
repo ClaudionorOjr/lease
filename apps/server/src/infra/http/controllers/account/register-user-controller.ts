@@ -1,7 +1,7 @@
 import { RegisterUser } from '@/domain/account/application/use-cases/register-user';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { container } from 'tsyringe';
-import type { RegisterUserRoute } from '../../schemas/register-user-schema';
+import type { RegisterUserRoute } from '../../schemas/account/register-user-schema';
 
 export async function registerUserController(
   request: FastifyRequest<RegisterUserRoute>,

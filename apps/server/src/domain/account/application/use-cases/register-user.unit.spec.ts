@@ -32,6 +32,7 @@ describe('Register user use case', () => {
       fullName: 'John Doe',
       email: 'john@exemplo.com',
       password: expect.any(String),
+      phone: expect.any(String),
       createdAt: expect.any(Date),
     });
   });

@@ -5,6 +5,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig(({ mode }) => ({
   plugins: [tsconfigPaths()],
   test: {
+    hookTimeout: 30000,
     workspace: [
       {
         extends: true,
