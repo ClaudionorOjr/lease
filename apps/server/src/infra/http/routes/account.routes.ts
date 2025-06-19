@@ -2,14 +2,24 @@ import type { FastifyInstance } from 'fastify';
 import type { ZodTypeProvider } from 'fastify-type-provider-zod';
 
 import { authenticateController } from '../controllers/account/authenticate-controller';
-import { deleteUserController } from '../controllers/account/delete-user-controller';
-import { editUserController } from '../controllers/account/edit-user-controller';
+import { deleteAccountController } from '../controllers/account/delete-account-controller';
+import { editProfileController } from '../controllers/account/edit-profile-controller';
 import { getProfileController } from '../controllers/account/get-profile-controller';
 import { registerUserController } from '../controllers/account/register-user-controller';
 import { verifyJWT } from '../middleware/verify-jwt';
-import { authenticateSchema } from '../schemas/account/authenticate-schema';
-import { deleteUserSchema } from '../schemas/account/delete-user-schema';
-import { editUserSchema } from '../schemas/account/edit-user-schema';
+import {
+  type AuthenticateRoute,
+  authenticateSchema,
+} from '../schemas/account/authenticate-schema';
+import {
+  type DeleteAccountRoute,
+  deleteAccountSchema,
+} from '../schemas/account/delete-account-schema';
+import {
+  type EditProfileRoute,
+  editProfileSchema,
+} from '../schemas/account/edit-profile-schema';
+
 import { getProfileSchema } from '../schemas/account/get-profile-schema';
 import { registerUserSchema } from '../schemas/account/register-user-schema';
 
@@ -18,6 +28,7 @@ export async function accountRoutes(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
     '/user',
     {
+      onRequest: [verifyJWT],
       schema: registerUserSchema,
     },
     registerUserController,
@@ -32,25 +43,25 @@ export async function accountRoutes(app: FastifyInstance) {
     getProfileController,
   );
 
-  app.withTypeProvider<ZodTypeProvider>().put(
-    '/user/:userId',
+  app.withTypeProvider<ZodTypeProvider>().put<EditProfileRoute>(
+    '/profile',
     {
       onRequest: [verifyJWT],
-      schema: editUserSchema,
+      schema: editProfileSchema,
     },
-    editUserController,
+    editProfileController,
   );
 
-  app.withTypeProvider<ZodTypeProvider>().delete(
-    '/user/:userId',
+  app.withTypeProvider<ZodTypeProvider>().delete<DeleteAccountRoute>(
+    '/user',
     {
       onRequest: [verifyJWT],
-      schema: deleteUserSchema,
+      schema: deleteAccountSchema,
     },
-    deleteUserController,
+    deleteAccountController,
   );
 
-  app.withTypeProvider<ZodTypeProvider>().post(
+  app.withTypeProvider<ZodTypeProvider>().post<AuthenticateRoute>(
     '/sessions',
     {
       schema: authenticateSchema,

@@ -1,4 +1,5 @@
-import { getUser } from '@/http/get-user';
+// import { getUser } from '@/http/get-user';
+import { getProfile } from '@/http/generated/endpoints';
 import { cookies } from 'next/headers';
 
 export async function isAuthenticated() {
@@ -13,7 +14,7 @@ export async function auth() {
   // }'
 
   try {
-    const { user } = await getUser();
+    const { user } = await getProfile();
 
     return { user };
   } catch (error) {}

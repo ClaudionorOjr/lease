@@ -3,22 +3,22 @@
 import { statuses } from '@/app/(app)/solicitation/page';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import type { Solicitation } from '@/http/generated/endpoints';
 import type { Table } from '@tanstack/react-table';
 import { Filter, X } from 'lucide-react';
 import { useState, useTransition } from 'react';
 import { getSolicitationAction } from './actions';
-import type { DataExemplo } from './columns';
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
 
-interface DataTableToolbarProps {
-  table: Table<DataExemplo>;
-  solicitationState: (data: DataExemplo[]) => void;
+interface DataTableToolbarProps<TData> {
+  table: Table<TData>;
+  solicitationState: (data: Solicitation[]) => void;
 }
 
-export function DataTableToolbar({
+export function DataTableToolbar<TData>({
   table,
   solicitationState,
-}: DataTableToolbarProps) {
+}: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const [inputValue, setInputValue] = useState('');
   const [isPending, startTransaction] = useTransition();

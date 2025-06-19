@@ -2,7 +2,7 @@ import type { Hasher } from '@/domain/account/application/cryptography/hasher';
 import { compare, hash } from 'bcrypt';
 
 export class BcryptHasher implements Hasher {
-  private HASH_SALT_LENGTH = 6;
+  private HASH_SALT_LENGTH = 10;
 
   /**
    * Generates a hash of the given plain text string.

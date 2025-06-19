@@ -5,6 +5,7 @@ import type {
   RouteGenericInterface,
 } from 'fastify';
 import { z } from 'zod';
+import { solicitationSchema } from '../entities';
 
 const getSolicitationParamsSchema = z.object({ solicitationId: z.string() });
 
@@ -12,19 +13,7 @@ type GetSolicitationParams = z.infer<typeof getSolicitationParamsSchema>;
 
 const getSolicitationResponseSchema = {
   200: z.object({
-    solicitation: z.object({
-      id: z.string().uuid(),
-      lessee: z.string(),
-      cpf: z.string(),
-      email: z.string().nullish(),
-      phone: z.string(),
-      description: z.string().nullish(),
-      status: z.enum(['PENDING', 'APPROVED', 'REJECTED']),
-      startDate: z.date(),
-      endDate: z.date(),
-      createdAt: z.date(),
-      updatedAt: z.date().nullish(),
-    }),
+    solicitation: solicitationSchema,
   }),
   400: z.object({
     message: z.string(),

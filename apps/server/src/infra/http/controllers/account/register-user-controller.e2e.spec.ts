@@ -1,3 +1,4 @@
+import { UserFactory } from '@/test/factories/make-user';
 import { prisma, showLogs } from '@/test/setup-e2e';
 import { fakerPT_BR as faker } from '@faker-js/faker';
 import type { FastifyInstance } from 'fastify';
@@ -5,10 +6,11 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 
 describe('Register user', () => {
   let app: FastifyInstance;
+  let userFactory: UserFactory;
 
   beforeAll(async () => {
     app = (await import('@/infra/server.ts')).app;
-
+    userFactory = new UserFactory(prisma);
     // showLogs();
 
     await app.ready();
@@ -26,11 +28,16 @@ describe('Register user', () => {
       phone: faker.phone.number(),
     };
 
+    const user = await userFactory.makePrismaUser();
+
+    const accessToken = app.jwt.sign({ sub: user.id }, { expiresIn: '7d' });
+
     const response = await app.inject({
       method: 'POST',
       url: '/user',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
       },
       payload,
     });

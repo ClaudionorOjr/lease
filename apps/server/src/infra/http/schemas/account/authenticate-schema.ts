@@ -1,4 +1,9 @@
-import type { RouteGenericInterface } from 'fastify';
+import type {
+  FastifyReply,
+  FastifyRequest,
+  FastifySchema,
+  RouteGenericInterface,
+} from 'fastify';
 import z from 'zod';
 
 const authenticateBodySchema = z.object({
@@ -30,14 +35,35 @@ const authenticateResponseSchema = {
   }),
 };
 
-export interface AuthenticateRoute extends RouteGenericInterface {
+type AuthenticateResponse = {
+  [statusCode in keyof typeof authenticateResponseSchema]: z.infer<
+    (typeof authenticateResponseSchema)[statusCode]
+  >;
+};
+
+interface AuthenticateRoute extends RouteGenericInterface {
   Body: AuthenticateBody;
+  Reply: AuthenticateResponse;
 }
 
-export const authenticateSchema = {
+type AuthenticateRequest = FastifyRequest<{ Body: AuthenticateBody }>;
+
+type AuthenticateReply = FastifyReply<{
+  Reply: AuthenticateResponse;
+}>;
+
+const authenticateSchema = {
   operationId: 'authenticate',
   tags: ['Account'],
   summary: 'Authenticate with email and password',
   body: authenticateBodySchema,
   response: authenticateResponseSchema,
+} satisfies FastifySchema;
+
+export {
+  authenticateSchema,
+  type AuthenticateRoute,
+  type AuthenticateRequest,
+  type AuthenticateReply,
+  type AuthenticateResponse,
 };

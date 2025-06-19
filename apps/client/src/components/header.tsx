@@ -19,7 +19,7 @@ export function Header() {
       >
         <Link href="/solicitation">
           <TextSearch />
-          Consultar solicitações
+          Consult solicitations
         </Link>
       </Button>
 

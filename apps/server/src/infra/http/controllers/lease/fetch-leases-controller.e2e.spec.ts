@@ -1,19 +1,22 @@
 import { LeaseFactory } from '@/test/factories/make-lease';
+import { ServiceFactory } from '@/test/factories/make-service';
 import { UserFactory } from '@/test/factories/make-user';
 import { prisma } from '@/test/setup-e2e';
 import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 import type { FetchLeasesResponse } from '../../schemas/lease/fetch-leases-schema';
 
-describe('Fetch schedulings', () => {
+describe('Fetch leases', () => {
   let app: FastifyInstance;
   let leaseFactory: LeaseFactory;
   let userFactory: UserFactory;
+  let serviceFactory: ServiceFactory;
 
   beforeAll(async () => {
     app = (await import('@/infra/server.ts')).app;
     userFactory = new UserFactory(prisma);
     leaseFactory = new LeaseFactory(prisma);
+    serviceFactory = new ServiceFactory(prisma);
 
     await app.ready();
   });
@@ -24,12 +27,17 @@ describe('Fetch schedulings', () => {
 
   test('[GET] /leases', async () => {
     const user = await userFactory.makePrismaUser();
+    const service = await serviceFactory.makePrismaService({
+      createdBy: user.id,
+    });
 
     await Promise.all([
       leaseFactory.makePrismaLease({
+        serviceId: service.id,
         createdBy: user.id,
       }),
       leaseFactory.makePrismaLease({
+        serviceId: service.id,
         createdBy: user.id,
       }),
     ]);

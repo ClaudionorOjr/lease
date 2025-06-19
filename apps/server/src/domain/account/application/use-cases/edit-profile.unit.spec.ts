@@ -1,31 +1,38 @@
-import 'reflect-metadata'
+import 'reflect-metadata';
 import { makeUser } from '@/test/factories/make-user';
 import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository';
+import { fakerPT_BR as faker } from '@faker-js/faker';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { DeleteUser } from './delete-user';
+import { EditProfile } from './edit-profile';
 import { UserNotFoundError } from './errors/account-errors';
 
-describe('Delete user use case', () => {
+describe('Edit profile use case', () => {
   let usersRepository: InMemoryUsersRepository;
-  let sut: DeleteUser;
+  let sut: EditProfile;
 
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository();
-    sut = new DeleteUser(usersRepository);
+    sut = new EditProfile(usersRepository);
   });
 
-  it('should be able to delete an user', async () => {
+  it('should be able to edit your profile', async () => {
     await usersRepository.create(makeUser({}, 'user-01'));
 
     const result = await sut.execute({
       userId: 'user-01',
+      fullName: faker.person.fullName(),
+      phone: faker.phone.number(),
     });
 
     expect(result.isSuccess()).toBe(true);
-    expect(usersRepository.users).toHaveLength(0);
+    expect(usersRepository.users[0]).toMatchObject({
+      id: 'user-01',
+      fullName: expect.any(String),
+      phone: expect.any(String),
+    });
   });
 
-  it('should not be able to delete non existent user', async () => {
+  it('should not be able to edit non existent profile', async () => {
     const result = await sut.execute({
       userId: 'user-01',
     });

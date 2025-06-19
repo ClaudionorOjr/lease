@@ -4,26 +4,11 @@ import type {
   RouteGenericInterface,
 } from 'fastify';
 import { z } from 'zod';
+import { leaseSchema } from '../entities';
 
 const fetchLeasesResponseSchema = {
   200: z.object({
-    leases: z.array(
-      z.object({
-        id: z.string(),
-        lessee: z.string(),
-        cpf: z.string(),
-        email: z.string().email().nullish(),
-        phone: z.string(),
-        description: z.string().nullish(),
-        startDate: z.coerce.date(),
-        endDate: z.coerce.date(),
-        serviceId: z.string().nullish(),
-        createdBy: z.string(),
-        createdAt: z.date(),
-        updatedAt: z.date().nullish(),
-        canceledAt: z.date().nullish(),
-      }),
-    ),
+    leases: z.array(leaseSchema),
   }),
   400: z.object({
     message: z.string(),

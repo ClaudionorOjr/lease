@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import type { Solicitation } from '@/http/generated/endpoints';
 import {
   type ColumnDef,
   type ColumnFiltersState,
@@ -27,7 +28,6 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { Fragment, useState } from 'react';
-import { DataExemplo } from './columns';
 import { DataTableCollapsibleRow } from './data-table-collapsible-row';
 import { DataTablePagination } from './data-table-pagination';
 import { DataTableToolbar } from './data-table-toolbar';
@@ -35,7 +35,7 @@ import { DataTableToolbar } from './data-table-toolbar';
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  solicitationsState: (data: TData[]) => void;
+  solicitationsState: (data: Solicitation[]) => void;
 }
 
 export function DataTable<TData, TValue>({

@@ -1,17 +1,19 @@
 'use server';
 
-import { acceptSolicitation } from '@/http/solicitations/accept-solicitation';
-import { refuseSolicitation } from '@/http/solicitations/refuse-solicitation';
+import {
+  acceptSolicitation,
+  refuseSolicitation,
+} from '@/http/generated/endpoints';
 import { revalidatePath } from 'next/cache';
 
 export async function acceptSolicitationAction(solicitationId: string) {
-  await acceptSolicitation({ solicitationId });
+  await acceptSolicitation(solicitationId);
 
   revalidatePath('/dashboard/solicitations');
 }
 
 export async function refuseSolicitationAction(solicitationId: string) {
-  await refuseSolicitation({ solicitationId });
+  await refuseSolicitation(solicitationId);
 
   revalidatePath('/dashboard/solicitations');
 }

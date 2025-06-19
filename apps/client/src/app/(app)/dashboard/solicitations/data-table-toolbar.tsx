@@ -18,9 +18,9 @@ export function DataTableToolbar<TData>({
     <div className="flex items-center gap-2">
       <Input
         placeholder="Filter solicitations..."
-        value={(table.getColumn('lessor')?.getFilterValue() as string) ?? ''}
+        value={(table.getColumn('lessee')?.getFilterValue() as string) ?? ''}
         onChange={(event) =>
-          table.getColumn('lessor')?.setFilterValue(event.target.value)
+          table.getColumn('lessee')?.setFilterValue(event.target.value)
         }
       />
       <DataTableFacetedFilter

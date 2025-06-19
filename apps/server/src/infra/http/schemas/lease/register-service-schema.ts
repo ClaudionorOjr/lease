@@ -9,7 +9,7 @@ import { z } from 'zod';
 const registerServiceBodySchema = z.object({
   name: z.string(),
   description: z.string().optional(),
-  priceInCents: z.number().gte(0, { message: 'Price must be greater than 0' }),
+  priceInCents: z.number().gt(0, { message: 'Price must be greater than 0' }),
 });
 
 type RegisterServiceBody = z.infer<typeof registerServiceBodySchema>;

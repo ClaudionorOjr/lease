@@ -7,6 +7,11 @@ export const env = createEnv({
 
     JWT_SECRET: z.string(),
 
+    ADMIN_FULLNAME: z.string(),
+    ADMIN_EMAIL: z.string(),
+    ADMIN_PASSWORD: z.string(),
+    ADMIN_PHONE: z.string(),
+
     SERVER_PORT: z.coerce.number().default(3333),
   },
   client: {},
@@ -17,6 +22,11 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
 
     JWT_SECRET: process.env.JWT_SECRET,
+
+    ADMIN_FULLNAME: process.env.ADMIN_FULLNAME,
+    ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+    ADMIN_PHONE: process.env.ADMIN_PHONE,
 
     SERVER_PORT: process.env.PORT,
 

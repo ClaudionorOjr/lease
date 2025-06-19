@@ -24,7 +24,7 @@ export namespace PrismaLeaseMapper {
       createdAt: lease.createdAt,
       updatedAt: lease.updatedAt,
       canceledAt: lease.canceledAt,
-      priceInCents: 0, // TODO remover essa propriedade
+      leasingPriceInCents: lease.leasingPriceInCents,
     };
   }
 
@@ -50,6 +50,7 @@ export namespace PrismaLeaseMapper {
         createdAt: raw.createdAt,
         updatedAt: raw.updatedAt,
         canceledAt: raw.canceledAt,
+        leasingPriceInCents: raw.leasingPriceInCents,
       },
       raw.id,
     );

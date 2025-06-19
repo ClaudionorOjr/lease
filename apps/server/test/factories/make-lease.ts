@@ -19,6 +19,8 @@ export function makeLease(override?: Partial<LeaseProps>, id?: string): Lease {
       startDate: new Date(),
       endDate: faker.date.future(),
       createdBy: faker.string.uuid(),
+      serviceId: faker.string.uuid(),
+      leasingPriceInCents: faker.number.int({ min: 1000, max: 10000 }),
       ...override,
     },
     id,

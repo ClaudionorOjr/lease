@@ -27,7 +27,7 @@ const getProfileResponseSchema = {
 export const getProfileSchema = {
   operationId: 'getProfile',
   tags: ['Account'],
-  summary: 'Get an user by id',
+  summary: 'Get your profile',
   security: [{ bearerAuth: [] }],
   response: getProfileResponseSchema,
 } satisfies FastifySchema;

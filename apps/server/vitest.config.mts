@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [tsconfigPaths()],
   test: {
     hookTimeout: 30000,
-    workspace: [
+    projects: [
       {
         extends: true,
         test: {

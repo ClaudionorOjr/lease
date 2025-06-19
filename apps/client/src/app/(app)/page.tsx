@@ -1,5 +1,5 @@
 import { isAuthenticated } from '@/auth/auth';
-import { fetchServices } from '@/http/services/fetch-services';
+import { fetchServices } from '@/http/generated/endpoints';
 import { LeasingForm } from './leasing-form';
 
 export default async function Home() {

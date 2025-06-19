@@ -1,4 +1,5 @@
 import { LeaseFactory } from '@/test/factories/make-lease';
+import { ServiceFactory } from '@/test/factories/make-service';
 import { UserFactory } from '@/test/factories/make-user';
 import { prisma } from '@/test/setup-e2e';
 import type { FastifyInstance } from 'fastify';
@@ -8,11 +9,14 @@ describe('Cancel lease', () => {
   let app: FastifyInstance;
   let leaseFactory: LeaseFactory;
   let userFactory: UserFactory;
+  let serviceFactory: ServiceFactory;
 
   beforeAll(async () => {
     app = (await import('@/infra/server.ts')).app;
     userFactory = new UserFactory(prisma);
     leaseFactory = new LeaseFactory(prisma);
+    serviceFactory = new ServiceFactory(prisma);
+
     await app.ready();
   });
 
@@ -22,7 +26,13 @@ describe('Cancel lease', () => {
 
   test('[PATCH] /lease/:leaseId/cancel', async () => {
     const user = await userFactory.makePrismaUser();
-    const lease = await leaseFactory.makePrismaLease({ createdBy: user.id });
+    const service = await serviceFactory.makePrismaService({
+      createdBy: user.id,
+    });
+    const lease = await leaseFactory.makePrismaLease({
+      serviceId: service.id,
+      createdBy: user.id,
+    });
 
     const accessToken = app.jwt.sign({ sub: user.id }, { expiresIn: '7d' });
 

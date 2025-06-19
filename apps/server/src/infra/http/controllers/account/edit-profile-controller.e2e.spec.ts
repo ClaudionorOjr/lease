@@ -4,7 +4,7 @@ import { fakerPT_BR as faker } from '@faker-js/faker';
 import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
 
-describe('Edit user', () => {
+describe('Edit profile', () => {
   let app: FastifyInstance;
   let userFactory: UserFactory;
 
@@ -19,7 +19,7 @@ describe('Edit user', () => {
     await app.close();
   });
 
-  test('[PUT] /user/:userId', async () => {
+  test('[PUT] /profile', async () => {
     const user = await userFactory.makePrismaUser();
 
     const payload = {
@@ -31,7 +31,7 @@ describe('Edit user', () => {
 
     const response = await app.inject({
       method: 'PUT',
-      url: `/user/${user.id}`,
+      url: '/profile',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,

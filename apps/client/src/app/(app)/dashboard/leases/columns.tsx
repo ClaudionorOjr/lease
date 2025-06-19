@@ -1,29 +1,11 @@
 'use client';
 
 import { Checkbox } from '@/components/ui/checkbox';
+import type { Lease } from '@/http/generated/endpoints';
 import type { ColumnDef } from '@tanstack/react-table';
-import { z } from 'zod';
 import { DataTableRowActions } from './data-table-row-actions';
 
-export const dataSchema = z.object({
-  id: z.string(),
-  lessor: z.string(),
-  cpf: z.string(),
-  email: z.string().nullable(),
-  phone: z.string(),
-  description: z.string().nullable(),
-  startDate: z.coerce.date(),
-  endDate: z.coerce.date(),
-  serviceId: z.string().nullable(),
-  createdBy: z.string(),
-  createdAt: z.coerce.date(),
-  updatedAt: z.coerce.date().nullable(),
-  canceledAt: z.coerce.date().nullable(),
-});
-
-export type DataExemplo = z.infer<typeof dataSchema>;
-
-export const columns: ColumnDef<DataExemplo>[] = [
+export const columns: ColumnDef<Lease>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -47,9 +29,9 @@ export const columns: ColumnDef<DataExemplo>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'lessor',
-    header: ({ column }) => 'Lessor',
-    cell: ({ row }) => row.getValue('lessor'),
+    accessorKey: 'lessee',
+    header: ({ column }) => 'Lessee',
+    cell: ({ row }) => row.getValue('lessee'),
   },
   {
     id: 'date',

@@ -1,12 +1,9 @@
 'use server';
 
 import { isAuthenticated } from '@/auth/auth';
-
-import { createScheduling } from '@/http/schedulings/create-scheduling';
-import { registerSolicitation } from '@/http/solicitations/register-solicitation';
+import { createLease, createSolicitation } from '@/http/generated/endpoints';
 import { parse, subDays } from 'date-fns';
 import { ptBR } from 'date-fns/locale/pt-BR';
-import { HTTPError, type KyResponse } from 'ky';
 import { z } from 'zod';
 
 const leasingSchema = z.object({
@@ -98,10 +95,7 @@ const leasingSchema = z.object({
         endDate: data.endDate as Date,
       };
     }),
-  serviceId: z
-    .string()
-    .optional()
-    .transform((value) => (value?.trim() === '' ? undefined : value)),
+  serviceId: z.string(),
 });
 
 export async function leasingAction(data: FormData) {
@@ -122,36 +116,36 @@ export async function leasingAction(data: FormData) {
     result.data;
 
   try {
-    let response: KyResponse<unknown>;
+    let response: string | null;
     if (authenticatedUser) {
-      response = await createScheduling({
+      response = await createLease({
         lessee,
         cpf,
         email,
         phone,
         description,
-        startDate: date.startDate,
-        endDate: date.endDate,
+        startDate: date.startDate.toString(),
+        endDate: date.endDate.toString(),
         serviceId,
       });
     } else {
-      response = await registerSolicitation({
+      response = await createSolicitation({
         lessee,
         cpf,
         email,
         phone,
         description,
-        startDate: date.startDate,
-        endDate: date.endDate,
+        startDate: date.startDate.toString(),
+        endDate: date.endDate.toString(),
         serviceId,
       });
     }
-    console.log(response.body);
+    console.log(response);
   } catch (error) {
     console.error(error);
 
-    if (error instanceof HTTPError) {
-      const { message } = await error.response.json();
+    if (error instanceof Response) {
+      const { message } = await error.json();
 
       return { success: false, message, errors: null };
     }

@@ -1,25 +1,27 @@
 import { type Either, failure, success } from '@/core/either';
+import { inject, injectable } from 'tsyringe';
 import type { UsersRepository } from '../repositories/users-repository';
 import { UserNotFoundError } from './errors/account-errors';
-import { inject, injectable } from 'tsyringe';
 
-type EditUserRequest = {
+type EditProfileRequest = {
   userId: string;
   fullName?: string;
   phone?: string;
 };
 
-type EditUserResponse = Either<UserNotFoundError, object>;
+type EditProfileResponse = Either<UserNotFoundError, object>;
 
 @injectable()
-export class EditUser {
-  constructor(@inject('UsersRepository') private usersRepository: UsersRepository) {}
+export class EditProfile {
+  constructor(
+    @inject('UsersRepository') private usersRepository: UsersRepository,
+  ) {}
 
   async execute({
     userId,
     fullName,
     phone,
-  }: EditUserRequest): Promise<EditUserResponse> {
+  }: EditProfileRequest): Promise<EditProfileResponse> {
     const user = await this.usersRepository.findById(userId);
 
     if (!user) {

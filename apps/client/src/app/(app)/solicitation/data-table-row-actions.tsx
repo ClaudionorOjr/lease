@@ -16,7 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { dataSchema } from './columns';
+import type { Solicitation } from '@/http/generated/endpoints';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -25,7 +25,7 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const { status, id: solicitationId } = dataSchema.parse(row.original);
+  const { status, id: solicitationId } = row.original as Solicitation;
 
   return (
     <div className="flex gap-2">

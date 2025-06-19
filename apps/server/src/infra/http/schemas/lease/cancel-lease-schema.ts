@@ -52,7 +52,7 @@ type CancelLeaseReply = FastifyReply<{
 const cancelLeaseSchema = {
   operationId: 'cancelLease',
   tags: ['Lease'],
-  summary: 'Cancel a scheduling',
+  summary: 'Cancel a lease',
   security: [{ bearerAuth: [] }],
   params: cancelLeaseParamsSchema,
   response: cancelLeaseResponseSchema,

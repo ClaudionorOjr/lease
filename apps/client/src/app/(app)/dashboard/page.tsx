@@ -1,10 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { fetchSchedulings } from '@/http/schedulings/fetch-schedulings';
-import { fetchSolicitations } from '@/http/solicitations/fetch-solicitations';
+import { fetchLeases, fetchSolicitations } from '@/http/generated/endpoints';
 import { CalendarCheck2, CalendarPlus } from 'lucide-react';
 
 export default async function DashboardPage() {
-  const { schedulings } = await fetchSchedulings();
+  const { leases } = await fetchLeases();
   const { solicitations } = await fetchSolicitations();
 
   return (
@@ -20,11 +19,11 @@ export default async function DashboardPage() {
       </Card>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Schedulings</CardTitle>
+          <CardTitle className="text-sm font-medium">Leases</CardTitle>
           <CalendarCheck2 className="size-4 text-muted-foreground" />
         </CardHeader>
         <CardContent className="text-2xl font-bold">
-          {schedulings.length}
+          {leases.length}
         </CardContent>
       </Card>
     </div>

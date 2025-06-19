@@ -1,11 +1,13 @@
 import { Authenticate } from '@/domain/account/application/use-cases/authenticate';
-import type { FastifyReply, FastifyRequest } from 'fastify';
 import { container } from 'tsyringe';
-import type { AuthenticateRoute } from '../../schemas/account/authenticate-schema';
+import type {
+  AuthenticateReply,
+  AuthenticateRequest,
+} from '../../schemas/account/authenticate-schema';
 
 export async function authenticateController(
-  request: FastifyRequest<AuthenticateRoute>,
-  reply: FastifyReply,
+  request: AuthenticateRequest,
+  reply: AuthenticateReply,
 ) {
   const { email, password } = request.body;
 

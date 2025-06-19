@@ -1,4 +1,4 @@
-import { fetchSolicitations } from '@/http/solicitations/fetch-solicitations';
+import { fetchSolicitations } from '@/http/generated/endpoints';
 import { Info } from 'lucide-react';
 import { columns } from './columns';
 import { DataTable } from './data-table';

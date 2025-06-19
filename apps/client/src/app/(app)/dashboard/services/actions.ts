@@ -1,10 +1,11 @@
 'use server';
 
-import { deleteService } from '@/http/services/delete-service';
-import { editService } from '@/http/services/edit-service';
-import { registerService } from '@/http/services/register-service';
+import {
+  deleteService,
+  editService,
+  registerService,
+} from '@/http/generated/endpoints';
 import type { FieldErrorsFromSchema } from '@/lib/utils';
-import { HTTPError } from 'ky';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
@@ -14,17 +15,23 @@ const serviceSchema = z.object({
   description: z.string().optional(),
   price: z.preprocess(
     (value) => {
-      if (typeof value === 'string') {
-        if (value.trim() === '') return undefined;
-        return Number.parseFloat(
-          value.replace('R$', '').trim().replace(',', '.'),
-        );
-      }
-      return value;
+      if (typeof value !== 'string') return value;
+
+      const cleaned = value
+        .replace(/[^\d,.-]/g, '')
+        .replace(',', '.')
+        .trim();
+      const number = Number.parseFloat(cleaned);
+
+      return Number.isNaN(number) ? undefined : number;
     },
     z
-      .number({ required_error: 'Price is required' })
-      .positive({ message: 'Price must be a greater than 0,00' }),
+      .number({
+        required_error: 'Price is required',
+        invalid_type_error: 'Price must be a valid number',
+      })
+      .positive({ message: 'Price must be greater than R$ 0,00' })
+      .transform((n) => Math.round(n * 100)),
   ),
 });
 
@@ -50,16 +57,18 @@ export async function registerServiceAction(
   }
 
   console.log(result.data);
-  const { name, description, price } = result.data;
+  const { name, description, price: priceInCents } = result.data;
+
+  console.log(priceInCents);
   try {
-    await registerService({ name, description, priceInCents: price });
+    await registerService({ name, description, priceInCents });
 
     revalidatePath('/dashboard/services');
   } catch (error) {
     console.error(error);
 
-    if (error instanceof HTTPError) {
-      const { message } = await error.response.json();
+    if (error instanceof Response) {
+      const { message } = await error.json();
 
       return { success: false, message, errors: null };
     }
@@ -85,26 +94,25 @@ export async function editServiceAction(_prevState: PrevState, data: FormData) {
   }
 
   console.log(result.data);
-  const { id, name, description, price } = result.data;
+  const { id, name, description, price: priceInCents } = result.data;
 
   if (!id) {
     return { success: false, message: 'Service ID is required', errors: null };
   }
 
   try {
-    await editService({
-      serviceId: id,
+    await editService(id, {
       name,
       description,
-      priceInCents: price,
+      priceInCents,
     });
 
     revalidatePath('/dashboard/services');
   } catch (error) {
     console.error(error);
 
-    if (error instanceof HTTPError) {
-      const { message } = await error.response.json();
+    if (error instanceof Response) {
+      const { message } = await error.json();
 
       return { success: false, message, errors: null };
     }
@@ -120,7 +128,7 @@ export async function editServiceAction(_prevState: PrevState, data: FormData) {
 }
 
 export async function deleteServiceAction(serviceId: string) {
-  await deleteService({ serviceId });
+  await deleteService(serviceId);
 
   revalidatePath('/dashboard/services');
 }

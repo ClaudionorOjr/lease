@@ -27,8 +27,8 @@ const navs = [
     href: '/dashboard/solicitations',
   },
   {
-    label: 'Schedulings',
-    href: '/dashboard/schedulings',
+    label: 'Leases',
+    href: '/dashboard/leases',
   },
 ];
 
@@ -48,6 +48,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+          <SidebarGroupLabel>Administrator</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href="/dashboard/new-user">Register user</Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

@@ -1,9 +1,9 @@
 import { Label } from '@/components/ui/label';
+import type { Solicitation } from '@/http/generated/endpoints';
 import type { Row } from '@tanstack/react-table';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import { TableCell, TableRow } from '../../../../components/ui/table';
-import { dataSchema } from '../../solicitation/columns';
 
 interface DataTableCollapsibleRowProps<TData> {
   row: Row<TData>;
@@ -14,9 +14,8 @@ export function DataTableCollapsibleRow<TData>({
   row,
   columnsLength,
 }: DataTableCollapsibleRowProps<TData>) {
-  const { id, cpf, email, phone, description, createdAt } = dataSchema.parse(
-    row.original,
-  );
+  const { id, cpf, email, phone, description, createdAt } =
+    row.original as Solicitation;
 
   console.log(id);
 

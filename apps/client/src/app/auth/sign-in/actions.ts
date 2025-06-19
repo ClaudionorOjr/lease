@@ -1,7 +1,6 @@
 'use server';
 
-import { signIn } from '@/http/sign-in';
-import { HTTPError } from 'ky';
+import { authenticate as signIn } from '@/http/generated/endpoints';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
@@ -38,8 +37,8 @@ export async function signInAction(data: FormData) {
   } catch (error) {
     console.error(error);
 
-    if (error instanceof HTTPError) {
-      const { message } = await error.response.json();
+    if (error instanceof Response) {
+      const { message } = await error.json();
 
       return { success: false, message, errors: null };
     }

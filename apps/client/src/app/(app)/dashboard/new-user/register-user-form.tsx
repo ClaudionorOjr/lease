@@ -6,11 +6,12 @@ import { Label } from '@/components/ui/label';
 import { AlertTriangle, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useActionState } from 'react';
-import { SignUpAction } from './actions';
+import { withMask } from 'use-mask-input';
+import { RegisterUserAction } from './actions';
 
-export function SignUpForm() {
+export function RegisterUserForm() {
   const [{ success, message, errors, payload }, formAction, isPending] =
-    useActionState(SignUpAction, {
+    useActionState(RegisterUserAction, {
       success: false,
       message: null,
       errors: null,
@@ -24,24 +25,34 @@ export function SignUpForm() {
       {success === false && message && (
         <Alert variant="destructive">
           <AlertTriangle className="size-4" />
-          <AlertTitle>Login failed!</AlertTitle>
+          <AlertTitle>Register failed!</AlertTitle>
           <AlertDescription>{message}</AlertDescription>
         </Alert>
       )}
 
       <div className="space-y-1">
-        <Label htmlFor="fullname">Fullname</Label>
+        <Label htmlFor="fullName">Full name</Label>
         <Input
-          name="fullname"
-          id="fullname"
-          defaultValue={payload?.fullname?.toString() ?? ''}
+          name="fullName"
+          id="fullName"
+          defaultValue={payload?.fullName?.toString() ?? ''}
         />
 
-        {errors?.fullname && (
+        {errors?.fullName && (
           <p className="text-sm font-mediumtext-red-500 dark:text-red-400">
-            {errors.fullname}
+            {errors.fullName}
           </p>
         )}
+      </div>
+
+      <div className="space-y-1">
+        <Label htmlFor="phone">Phone</Label>
+        <Input
+          id="phone"
+          name="phone"
+          ref={withMask('(99) 99999-9999', { showMaskOnHover: false })}
+          defaultValue={payload?.phone?.toString() ?? ''}
+        />
       </div>
 
       <div className="space-y-1">
@@ -76,7 +87,7 @@ export function SignUpForm() {
       </div>
 
       <div className="space-y-1">
-        <Label htmlFor="confirm_password">Confirm your password</Label>
+        <Label htmlFor="confirm_password">Confirm password</Label>
         <Input
           name="confirm_password"
           type="password"
@@ -95,9 +106,9 @@ export function SignUpForm() {
         {isPending ? <Loader2 className="size-4" /> : 'Create account'}
       </Button>
 
-      <Button variant="link" size="sm" className="w-full hover:outline" asChild>
+      {/* <Button variant="link" size="sm" className="w-full hover:outline" asChild>
         <Link href="/auth/sign-in">Already registered? Sign in</Link>
-      </Button>
+      </Button> */}
     </form>
   );
 }

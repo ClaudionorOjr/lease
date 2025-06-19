@@ -2,26 +2,10 @@
 import { DataTableRowActions } from '@/app/(app)/dashboard/solicitations/data-table-row-actions';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
+import type { Solicitation } from '@/http/generated/endpoints';
 import type { ColumnDef } from '@tanstack/react-table';
-import { z } from 'zod';
 
-export const dataSchema = z.object({
-  id: z.string(),
-  lessor: z.string(),
-  cpf: z.string(),
-  email: z.string().nullable(),
-  phone: z.string(),
-  description: z.string().nullable(),
-  status: z.enum(['PENDING', 'APPROVED', 'REJECTED']).default('PENDING'),
-  startDate: z.coerce.date(),
-  endDate: z.coerce.date(),
-  createdAt: z.coerce.date(),
-  updatedAt: z.coerce.date().nullable(),
-});
-
-export type DataExemplo = z.infer<typeof dataSchema>;
-
-export const columns: ColumnDef<DataExemplo>[] = [
+export const columns: ColumnDef<Solicitation>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -45,9 +29,9 @@ export const columns: ColumnDef<DataExemplo>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: 'lessor',
-    header: ({ column }) => 'Lessor',
-    cell: ({ row }) => row.getValue('lessor'),
+    accessorKey: 'lessee',
+    header: ({ column }) => 'Lessee',
+    cell: ({ row }) => row.getValue('lessee'),
   },
   {
     id: 'date',

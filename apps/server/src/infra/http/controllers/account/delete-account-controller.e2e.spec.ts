@@ -3,7 +3,7 @@ import { prisma } from '@/test/setup-e2e';
 import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, it, test } from 'vitest';
 
-describe('Delete user', () => {
+describe('Delete account', () => {
   let app: FastifyInstance;
   let userFactory: UserFactory;
 
@@ -18,14 +18,14 @@ describe('Delete user', () => {
     await app.close();
   });
 
-  test('[DELETE] /user/:userId', async () => {
+  test('[DELETE] /user', async () => {
     const user = await userFactory.makePrismaUser();
 
     const accessToken = app.jwt.sign({ sub: user.id }, { expiresIn: '7d' });
 
     const response = await app.inject({
       method: 'DELETE',
-      url: `/user/${user.id}`,
+      url: '/user',
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

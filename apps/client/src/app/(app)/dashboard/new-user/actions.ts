@@ -1,34 +1,39 @@
 'use server';
 
-import { signUp } from '@/http/sign-up';
-import { HTTPError } from 'ky';
+import { registerUser } from '@/http/generated/endpoints';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-const signUpSchema = z
+const registerUserSchema = z
   .object({
-    fullname: z
+    fullName: z
       .string()
       .refine((value) => value.trim().split(/\s+/).length >= 2, {
         message: 'Please enter your full name.',
       }),
+    phone: z.string().refine((value) => value.replace(/\D/g, '').length >= 11, {
+      message: 'Please enter a valid phone number.',
+    }),
     email: z.string().email({ message: 'Please enter a valid email address.' }),
     password: z
       .string()
       .min(8, { message: 'Password must be at least 8 characters long.' }),
     confirm_password: z
       .string()
-      .min(8, { message: 'Password must be at least 8 characters long.' }),
+      .min(8, { message: 'Password must be at least 8 characters long. ' }),
   })
   .refine((data) => data.password === data.confirm_password, {
     message: 'Passwords do not match.',
     path: ['confirm_password'],
   });
 
-export async function SignUpAction(_prevState: unknown, formData: FormData) {
+export async function RegisterUserAction(
+  _prevState: unknown,
+  formData: FormData,
+) {
   const data = Object.fromEntries(formData);
 
-  const result = signUpSchema.safeParse(Object.fromEntries(formData));
+  const result = registerUserSchema.safeParse(data);
 
   if (!result.success) {
     const errors = result.error.flatten().fieldErrors;
@@ -36,23 +41,24 @@ export async function SignUpAction(_prevState: unknown, formData: FormData) {
       success: false,
       message: null,
       errors,
-      payload: Object.fromEntries(formData),
+      payload: data,
     };
   }
 
-  const { fullname, email, password } = result.data;
+  const { fullName, email, password, phone } = result.data;
 
   try {
-    await signUp({
-      fullname,
+    await registerUser({
+      fullName,
       email,
       password,
+      phone,
     });
   } catch (error) {
     console.error(error);
 
-    if (error instanceof HTTPError) {
-      const { message } = await error.response.json();
+    if (error instanceof Response) {
+      const { message } = await error.json();
       return { success: false, message, errors: null, payload: null };
     }
 

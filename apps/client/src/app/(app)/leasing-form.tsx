@@ -17,24 +17,48 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { useCharacterLimit } from '@/hooks/use-character-limit';
 import { useFormState } from '@/hooks/use-form-state';
-import type { FetchServicesResponse } from '@/http/services/fetch-services';
+import type { FetchServices200 as FetchServicesResponse } from '@/http/generated/endpoints';
 import { cn } from '@/lib/utils';
 import { addMonths, format } from 'date-fns';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import { AlertTriangle, Loader2 } from 'lucide-react';
-import { useState } from 'react';
+import { type FormEvent, useState, useTransition } from 'react';
 import type { DateRange } from 'react-day-picker';
 import { withMask } from 'use-mask-input';
 import { leasingAction } from './actions';
 
 export function LeasingForm({ services }: FetchServicesResponse) {
+  const [isPending, startTransaction] = useTransition();
   const [date, setDate] = useState<DateRange | undefined>({
     from: undefined,
     to: undefined,
   });
-  const [select, setSelect] = useState<string | undefined>();
+  const [select, setSelect] = useState<string>();
 
   const today = new Date();
+
+  const [{ success, message, errors }, setFormState] = useState<{
+    success: boolean;
+    message: string | null;
+    errors: Record<string, string[]> | null;
+  }>({
+    success: false,
+    message: null,
+    errors: null,
+  });
+
+  async function handleLeasingForm(event: FormEvent<HTMLFormElement>) {
+    // event.preventDefault();
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    startTransaction(async () => {
+      const state = await leasingAction(data);
+
+      setFormState(state);
+    });
+  }
 
   const maxLength = 540;
   const {
@@ -43,9 +67,6 @@ export function LeasingForm({ services }: FetchServicesResponse) {
     handleChange,
     maxLength: limit,
   } = useCharacterLimit({ maxLength });
-
-  const [{ success, message, errors }, handleSubmit, isPending] =
-    useFormState(leasingAction);
 
   return (
     <div className="flex flex-col sm:flex-row justify-center gap-4 mx-4 mb-4">
@@ -64,7 +85,7 @@ export function LeasingForm({ services }: FetchServicesResponse) {
       />
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleLeasingForm}
         className="grid grid-cols-2 gap-4 w-full h-fit"
       >
         {success === false && message && (
@@ -78,6 +99,7 @@ export function LeasingForm({ services }: FetchServicesResponse) {
         <div className="col-span-2 lg:col-span-1 space-y-1">
           <Label htmlFor="date">Date*</Label>
           <Input
+            readOnly
             className={cn(
               'pointer-events-none',
               !date?.from && 'text-muted-foreground',
@@ -101,8 +123,8 @@ export function LeasingForm({ services }: FetchServicesResponse) {
         </div>
 
         <div className="col-span-2 lg:col-span-1 space-y-1">
-          <Label htmlFor="service">Service</Label>
-          <Select onValueChange={setSelect} defaultValue={select}>
+          <Label htmlFor="service">Service*</Label>
+          <Select onValueChange={setSelect} value={select}>
             <SelectTrigger className="flex w-full">
               <SelectValue placeholder="Select a service" />
             </SelectTrigger>
@@ -114,7 +136,7 @@ export function LeasingForm({ services }: FetchServicesResponse) {
               ))}
             </SelectContent>
           </Select>
-          <input type="hidden" name="serviceId" value={select} />
+          <input type="hidden" name="serviceId" value={select ?? ''} />
         </div>
 
         <div className="col-span-2 lg:col-span-1 space-y-1">

@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
-import { fetchServices } from '@/http/services/fetch-services';
+import { fetchServices } from '@/http/generated/endpoints';
 import { DialogTrigger } from '@radix-ui/react-dialog';
 import { CirclePlus, Info, Pen, Trash } from 'lucide-react';
 import { deleteServiceAction } from './actions';
