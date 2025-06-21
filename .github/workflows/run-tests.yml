@@ -61,6 +61,10 @@ jobs:
       DATABASE_URL: 'postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/${{ secrets.POSTGRES_DB }}'
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+      ADMIN_FULLNAME: ${{ secrets.ADMIN_FULLNAME }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      ADMIN_PHONE: ${{ secrets.ADMIN_PHONE }}
 
     steps:
       - name: Checkout code
