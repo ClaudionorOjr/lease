@@ -1,7 +1,8 @@
 {
   "name": "@repo/server",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "app.ts",
+  "type": "module",
   "scripts": {
     "dev": "npm run env:load tsx watch src/infra/app.ts",
     "test": "vitest run --project unit",
@@ -12,12 +13,11 @@
     "db:migrate": "npm run env:load prisma migrate dev",
     "env:load": "dotenv -e ../../.env --",
     "build": "tsup",
-    "start": "node dist/infra/app.js"
+    "start": "npm run env:load node dist/infra/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "description": "",
   "devDependencies": {
     "@faker-js/faker": "^9.7.0",

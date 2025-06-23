@@ -1,6 +1,10 @@
 import 'reflect-metadata';
 import '@/infra/container';
+import { fastifyCors } from '@fastify/cors';
 import { fastifyJwt } from '@fastify/jwt';
+import { fastifySwagger } from '@fastify/swagger';
+import { env } from '@repo/env';
+import ScalarApiReference from '@scalar/fastify-api-reference';
 import fastify from 'fastify';
 import {
   type ZodTypeProvider,
@@ -9,11 +13,6 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod';
-
-import { fastifyCors } from '@fastify/cors';
-import { fastifySwagger } from '@fastify/swagger';
-import { env } from '@repo/env';
-import ScalarApiReference from '@scalar/fastify-api-reference';
 import { errorHandler } from './http/error-handler';
 import { routes } from './http/routes';
 import { schemas } from './http/schemas/entities';
