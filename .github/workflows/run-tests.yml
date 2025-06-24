@@ -6,14 +6,13 @@ on:
       - main
       - alpha
 
-defaults:
-  run:
-    working-directory: apps/server
-
 jobs:
   unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/server
 
     steps:
       - name: Checkout code
@@ -83,9 +82,15 @@ jobs:
           echo "DATABASE_URL=$DATABASE_URL"
       
       - name: Install dependencies
+        working-directory: apps/server
         run: npm ci
 
+      - name: Build @repo/env package
+        working-directory: packages/env
+        run: npm run build
+
       - name: Wait for DB readiness
+        working-directory: apps/server
         run: |
           echo "Aguardando banco de dados ficar pronto..."
           for i in {1..10}; do
@@ -95,4 +100,5 @@ jobs:
           done
 
       - name: Run e2e tests
+        working-directory: apps/server
         run: npm run test:e2e
