@@ -1,10 +1,10 @@
 import 'reflect-metadata';
-import { makeUser } from '@/test/factories/make-user';
-import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository';
+import { makeUser } from '@/test/factories/make-user.ts';
+import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository.ts';
 import { fakerPT_BR as faker } from '@faker-js/faker';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { EditProfile } from './edit-profile';
-import { UserNotFoundError } from './errors/account-errors';
+import { EditProfile } from './edit-profile.ts';
+import { UserNotFoundError } from './errors/account-errors.ts';
 
 describe('Edit profile use case', () => {
   let usersRepository: InMemoryUsersRepository;

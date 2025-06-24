@@ -13,9 +13,9 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod';
-import { errorHandler } from './http/error-handler';
-import { routes } from './http/routes';
-import { schemas } from './http/schemas/entities';
+import { errorHandler } from './http/error-handler.ts';
+import { routes } from './http/routes/index.ts';
+import { schemas } from './http/schemas/entities/index.ts';
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>();
 

@@ -1,9 +1,9 @@
 import {
   Lease,
   type LeaseProps,
-} from '@/domain/lease/enterprise/entities/lease';
-import type { PrismaService } from '@/infra/database/prisma';
-import { PrismaLeaseMapper } from '@/infra/database/prisma/mappers/prisma-lease-mapper';
+} from '@/domain/lease/enterprise/entities/lease.ts';
+import type { PrismaService } from '@/infra/database/prisma/index.ts';
+import { PrismaLeaseMapper } from '@/infra/database/prisma/mappers/prisma-lease-mapper.ts';
 import { fakerPT_BR as faker } from '@faker-js/faker';
 
 export function makeLease(override?: Partial<LeaseProps>, id?: string): Lease {

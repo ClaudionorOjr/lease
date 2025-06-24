@@ -1,7 +1,10 @@
-import { type Either, failure, success } from '@/core/either';
+import { type Either, failure, success } from '@/core/either.ts';
 import { inject, injectable } from 'tsyringe';
-import { Service, type ServiceProps } from '../../enterprise/entities/service';
-import type { ServicesRepository } from '../repositories/services-repository';
+import {
+  Service,
+  type ServiceProps,
+} from '../../enterprise/entities/service.ts';
+import type { ServicesRepository } from '../repositories/services-repository.ts';
 
 type RegisterServiceRequest = ServiceProps;
 

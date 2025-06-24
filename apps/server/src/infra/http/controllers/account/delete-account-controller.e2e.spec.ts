@@ -1,5 +1,5 @@
-import { UserFactory } from '@/test/factories/make-user';
-import { prisma } from '@/test/setup-e2e';
+import { UserFactory } from '@/test/factories/make-user.ts';
+import { prisma } from '@/test/setup-e2e.ts';
 import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, it, test } from 'vitest';
 

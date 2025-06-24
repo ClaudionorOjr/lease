@@ -1,9 +1,9 @@
-import { type Either, failure, success } from '@/core/either';
+import { type Either, failure, success } from '@/core/either.ts';
 import { inject, injectable } from 'tsyringe';
-import { User, type UserProps } from '../../enterprise/entities/user';
-import type { Hasher } from '../cryptography/hasher';
-import type { UsersRepository } from '../repositories/users-repository';
-import { UserAlreadyExistsError } from './errors/account-errors';
+import { User, type UserProps } from '../../enterprise/entities/user.ts';
+import type { Hasher } from '../cryptography/hasher.ts';
+import type { UsersRepository } from '../repositories/users-repository.ts';
+import { UserAlreadyExistsError } from './errors/account-errors.ts';
 
 type RegisterUserRequest = Omit<UserProps, 'createdAt' | 'updatedAt'>;
 

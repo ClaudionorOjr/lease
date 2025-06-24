@@ -1,9 +1,9 @@
 import {
   User,
   type UserProps,
-} from '@/domain/account/enterprise/entities/user';
-import type { PrismaService } from '@/infra/database/prisma';
-import { PrismaUserMapper } from '@/infra/database/prisma/mappers/prisma-user-mapper';
+} from '@/domain/account/enterprise/entities/user.ts';
+import type { PrismaService } from '@/infra/database/prisma/index.ts';
+import { PrismaUserMapper } from '@/infra/database/prisma/mappers/prisma-user-mapper.ts';
 import { faker } from '@faker-js/faker';
 
 export function makeUser(override?: Partial<UserProps>, id?: string): User {

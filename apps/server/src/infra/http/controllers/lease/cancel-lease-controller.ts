@@ -1,9 +1,9 @@
-import { CancelLease } from '@/domain/lease/application/use-cases/cancel-lease';
+import { CancelLease } from '@/domain/lease/application/use-cases/cancel-lease.ts';
 import { container } from 'tsyringe';
 import type {
   CancelLeaseReply,
   CancelLeaseRequest,
-} from '../../schemas/lease/cancel-lease-schema';
+} from '../../schemas/lease/cancel-lease-schema.ts';
 
 export async function cancelLeaseController(
   request: CancelLeaseRequest,

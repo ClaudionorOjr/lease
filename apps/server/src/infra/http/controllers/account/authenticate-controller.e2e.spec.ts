@@ -1,10 +1,10 @@
 import { BcryptHasher } from '@/infra/cryptography/bcrypt-hasher';
-import { UserFactory } from '@/test/factories/make-user';
-import { prisma } from '@/test/setup-e2e';
+import { UserFactory } from '@/test/factories/make-user.ts';
+import { prisma } from '@/test/setup-e2e.ts';
 import { fakerPT_BR as faker } from '@faker-js/faker';
 import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
-import type { AuthenticateResponse } from '../../schemas/account/authenticate-schema';
+import type { AuthenticateResponse } from '../../schemas/account/authenticate-schema.ts';
 
 describe('Authenticate user', () => {
   let app: FastifyInstance;

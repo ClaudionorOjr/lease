@@ -1,7 +1,7 @@
 import { DeleteAccount } from '@/domain/account/application/use-cases/delete-account';
 import type { FastifyRequest } from 'fastify';
 import { container } from 'tsyringe';
-import type { DeleteAccountReply } from '../../schemas/account/delete-account-schema';
+import type { DeleteAccountReply } from '../../schemas/account/delete-account-schema.ts';
 
 export async function deleteAccountController(
   request: FastifyRequest,

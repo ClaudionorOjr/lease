@@ -1,5 +1,5 @@
-import { Entity } from '@/core/entities/entity';
-import type { Optional } from '@/core/types/optional';
+import { Entity } from '@/core/entities/entity.ts';
+import type { Optional } from '@/core/types/optional.ts';
 
 export interface LeaseProps {
   lessee: string;

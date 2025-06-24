@@ -1,12 +1,12 @@
 import 'reflect-metadata';
-import { makeService } from '@/test/factories/make-service';
-import { makeSolicitation } from '@/test/factories/make-solicitation';
-import { InMemoryLeasesRepository } from '@/test/repositories/in-memory-leases-repository';
-import { InMemoryServicesRepository } from '@/test/repositories/in-memory-services-repository';
-import { InMemorySolicitationsRepository } from '@/test/repositories/in-memory-solicitations-repository';
+import { makeService } from '@/test/factories/make-service.ts';
+import { makeSolicitation } from '@/test/factories/make-solicitation.ts';
+import { InMemoryLeasesRepository } from '@/test/repositories/in-memory-leases-repository.ts';
+import { InMemoryServicesRepository } from '@/test/repositories/in-memory-services-repository.ts';
+import { InMemorySolicitationsRepository } from '@/test/repositories/in-memory-solicitations-repository.ts';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { AcceptSolicitation } from './accept-solicitation';
-import { CreateLease } from './create-lease';
+import { AcceptSolicitation } from './accept-solicitation.ts';
+import { CreateLease } from './create-lease.ts';
 
 describe('Accept solicitation use case', () => {
   let leasesRepository: InMemoryLeasesRepository;

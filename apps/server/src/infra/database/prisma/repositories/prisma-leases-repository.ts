@@ -1,8 +1,8 @@
 import type { LeasesRepository } from '@/domain/lease/application/repositories/leases-repository';
 import type { Lease } from '@/domain/lease/enterprise/entities/lease';
 import { inject, injectable } from 'tsyringe';
-import type { PrismaService } from '..';
-import { PrismaLeaseMapper } from '../mappers/prisma-lease-mapper';
+import type { PrismaService } from '../index.ts';
+import { PrismaLeaseMapper } from '../mappers/prisma-lease-mapper.ts';
 
 @injectable()
 export class PrismaLeasesRepository implements LeasesRepository {

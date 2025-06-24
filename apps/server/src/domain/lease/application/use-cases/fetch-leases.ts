@@ -1,7 +1,7 @@
-import { type Either, success } from '@/core/either';
+import { type Either, success } from '@/core/either.ts';
 import { inject, injectable } from 'tsyringe';
-import type { Lease } from '../../enterprise/entities/lease';
-import type { LeasesRepository } from '../repositories/leases-repository';
+import type { Lease } from '../../enterprise/entities/lease.ts';
+import type { LeasesRepository } from '../repositories/leases-repository.ts';
 
 type FetchLeasesResponse = Either<
   Error,

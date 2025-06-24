@@ -1,13 +1,13 @@
 import 'reflect-metadata';
-import { makeLease } from '@/test/factories/make-lease';
-import { makeService } from '@/test/factories/make-service';
-import { InMemoryLeasesRepository } from '@/test/repositories/in-memory-leases-repository';
+import { makeLease } from '@/test/factories/make-lease.ts';
+import { makeService } from '@/test/factories/make-service.ts';
+import { InMemoryLeasesRepository } from '@/test/repositories/in-memory-leases-repository.ts';
 import { InMemoryServicesRepository } from '@/test/repositories/in-memory-services-repository';
-import { InMemorySolicitationsRepository } from '@/test/repositories/in-memory-solicitations-repository';
+import { InMemorySolicitationsRepository } from '@/test/repositories/in-memory-solicitations-repository.ts';
 import { fakerPT_BR as faker } from '@faker-js/faker';
 import { add, sub } from 'date-fns';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { CreateLease } from './create-lease';
+import { CreateLease } from './create-lease.ts';
 
 describe('Create lease use case', () => {
   let leasesRepository: InMemoryLeasesRepository;

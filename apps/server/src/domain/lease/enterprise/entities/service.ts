@@ -1,4 +1,4 @@
-import { Entity } from '@/core/entities/entity';
+import { Entity } from '@/core/entities/entity.ts';
 
 export interface ServiceProps {
   name: string;

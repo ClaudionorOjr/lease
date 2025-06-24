@@ -5,7 +5,7 @@ import type {
   RouteGenericInterface,
 } from 'fastify';
 import { z } from 'zod';
-import { solicitationSchema } from '../entities';
+import { solicitationSchema } from '../entities/index.ts';
 
 const getSolicitationParamsSchema = z.object({ solicitationId: z.string() });
 

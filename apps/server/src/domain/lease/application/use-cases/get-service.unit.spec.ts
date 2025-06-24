@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import { makeService } from '@/test/factories/make-service';
+import { makeService } from '@/test/factories/make-service.ts';
 import { InMemoryServicesRepository } from '@/test/repositories/in-memory-services-repository';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { GetService } from './get-service';
+import { GetService } from './get-service.ts';
 
 describe('Get service use case', () => {
   let servicesRepository: InMemoryServicesRepository;

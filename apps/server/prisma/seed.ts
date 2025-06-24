@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { env } from '@repo/env';
-import { BcryptHasher } from '../src/infra/cryptography/bcrypt-hasher';
+import { BcryptHasher } from '../src/infra/cryptography/bcrypt-hasher.ts';
 
 const prisma = new PrismaClient();
 const hasher = new BcryptHasher();

@@ -1,9 +1,9 @@
 import 'reflect-metadata';
-import { makeUser } from '@/test/factories/make-user';
-import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository';
+import { makeUser } from '@/test/factories/make-user.ts';
+import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository.ts';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { DeleteAccount } from './delete-account';
-import { UserNotFoundError } from './errors/account-errors';
+import { DeleteAccount } from './delete-account.ts';
+import { UserNotFoundError } from './errors/account-errors.ts';
 
 describe('Delete account use case', () => {
   let usersRepository: InMemoryUsersRepository;

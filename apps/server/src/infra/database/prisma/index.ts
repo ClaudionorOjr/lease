@@ -1,6 +1,6 @@
 import { type Prisma, PrismaClient } from '@prisma/client';
 import { injectable } from 'tsyringe';
-import type { DatabaseProvider } from '../database-provider';
+import type { DatabaseProvider } from '../database-provider.ts';
 
 @injectable()
 export class PrismaService

@@ -1,7 +1,7 @@
-import { type Either, failure, success } from '@/core/either';
+import { type Either, failure, success } from '@/core/either.ts';
 import { inject, injectable } from 'tsyringe';
-import type { SolicitationsRepository } from '../repositories/solicitations-repository';
-import type { CreateLease } from './create-lease';
+import type { SolicitationsRepository } from '../repositories/solicitations-repository.ts';
+import type { CreateLease } from './create-lease.ts';
 
 type AcceptSolicitationRequest = {
   userId: string;

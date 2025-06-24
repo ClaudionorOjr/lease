@@ -1,12 +1,12 @@
-import { type Either, failure, success } from '@/core/either';
+import { type Either, failure, success } from '@/core/either.ts';
 import { isAfter, isEqual, startOfDay } from 'date-fns';
 import { inject, injectable } from 'tsyringe';
 import {
   Solicitation,
   type SolicitationProps,
-} from '../../enterprise/entities/solicitation';
-import type { ServicesRepository } from '../repositories/services-repository';
-import type { SolicitationsRepository } from '../repositories/solicitations-repository';
+} from '../../enterprise/entities/solicitation.ts';
+import type { ServicesRepository } from '../repositories/services-repository.ts';
+import type { SolicitationsRepository } from '../repositories/solicitations-repository.ts';
 
 type CreateSolicitationRequest = Omit<
   SolicitationProps,

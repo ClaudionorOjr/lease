@@ -1,9 +1,9 @@
-import { RefuseSolicitation } from '@/domain/lease/application/use-cases/refuse-solicitation';
+import { RefuseSolicitation } from '@/domain/lease/application/use-cases/refuse-solicitation.ts';
 import { container } from 'tsyringe';
 import type {
   RefuseSolicitationReply,
   RefuseSolicitationRequest,
-} from '../../schemas/lease/refuse-solicitation-schema';
+} from '../../schemas/lease/refuse-solicitation-schema.ts';
 
 export async function refuseSolicitationController(
   request: RefuseSolicitationRequest,

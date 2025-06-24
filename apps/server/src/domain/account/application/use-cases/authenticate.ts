@@ -1,9 +1,9 @@
-import { type Either, failure, success } from '@/core/either';
+import { type Either, failure, success } from '@/core/either.ts';
 import { inject, injectable } from 'tsyringe';
-import type { Encrypter } from '../cryptography/encrypter';
-import type { Hasher } from '../cryptography/hasher';
-import type { UsersRepository } from '../repositories/users-repository';
-import { WrongCredentialsError } from './errors/account-errors';
+import type { Encrypter } from '../cryptography/encrypter.ts';
+import type { Hasher } from '../cryptography/hasher.ts';
+import type { UsersRepository } from '../repositories/users-repository.ts';
+import { WrongCredentialsError } from './errors/account-errors.ts';
 
 type AuthenticateRequest = {
   email: string;

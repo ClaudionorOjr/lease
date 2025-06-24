@@ -1,10 +1,10 @@
-import { type Either, failure, success } from '@/core/either';
+import { type Either, failure, success } from '@/core/either.ts';
 import { differenceInDays, isAfter, isEqual, startOfDay } from 'date-fns';
 import { inject, injectable } from 'tsyringe';
-import { Lease, type LeaseProps } from '../../enterprise/entities/lease';
-import type { LeasesRepository } from '../repositories/leases-repository';
-import type { ServicesRepository } from '../repositories/services-repository';
-import type { SolicitationsRepository } from '../repositories/solicitations-repository';
+import { Lease, type LeaseProps } from '../../enterprise/entities/lease.ts';
+import type { LeasesRepository } from '../repositories/leases-repository.ts';
+import type { ServicesRepository } from '../repositories/services-repository.ts';
+import type { SolicitationsRepository } from '../repositories/solicitations-repository.ts';
 
 type CreateLeasesRequest = Omit<
   LeaseProps,

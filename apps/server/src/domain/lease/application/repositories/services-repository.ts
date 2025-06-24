@@ -1,4 +1,4 @@
-import type { Service } from '../../enterprise/entities/service';
+import type { Service } from '../../enterprise/entities/service.ts';
 
 export interface ServicesRepository {
   create(service: Service): Promise<void>;

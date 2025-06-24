@@ -2,7 +2,7 @@ import {
   UserAlreadyExistsError,
   UserNotFoundError,
   WrongCredentialsError,
-} from '@/domain/account/application/use-cases/errors/account-errors';
+} from '@/domain/account/application/use-cases/errors/account-errors.ts';
 import type { FastifyInstance } from 'fastify';
 import { ZodError } from 'zod';
 

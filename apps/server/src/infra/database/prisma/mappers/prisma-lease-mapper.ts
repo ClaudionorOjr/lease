@@ -1,4 +1,4 @@
-import { Lease } from '@/domain/lease/enterprise/entities/lease';
+import { Lease } from '@/domain/lease/enterprise/entities/lease.ts';
 import type { Prisma, Lease as PrismaLease } from '@prisma/client';
 
 export namespace PrismaLeaseMapper {

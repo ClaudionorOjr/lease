@@ -1,9 +1,9 @@
-import { AcceptSolicitation } from '@/domain/lease/application/use-cases/accept-solicitation';
+import { AcceptSolicitation } from '@/domain/lease/application/use-cases/accept-solicitation.ts';
 import { container } from 'tsyringe';
 import type {
   AcceptSolicitationReply,
   AcceptSolicitationRequest,
-} from '../../schemas/lease/accept-solicitation-schema';
+} from '../../schemas/lease/accept-solicitation-schema.ts';
 
 export async function acceptSolicitationController(
   request: AcceptSolicitationRequest,

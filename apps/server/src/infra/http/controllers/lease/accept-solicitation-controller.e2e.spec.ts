@@ -1,7 +1,7 @@
-import { ServiceFactory } from '@/test/factories/make-service';
-import { SolicitationFactory } from '@/test/factories/make-solicitation';
-import { UserFactory } from '@/test/factories/make-user';
-import { prisma } from '@/test/setup-e2e';
+import { ServiceFactory } from '@/test/factories/make-service.ts';
+import { SolicitationFactory } from '@/test/factories/make-solicitation.ts';
+import { UserFactory } from '@/test/factories/make-user.ts';
+import { prisma } from '@/test/setup-e2e.ts';
 
 import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';

@@ -1,8 +1,8 @@
 import type { UsersRepository } from '@/domain/account/application/repositories/users-repository';
 import type { User } from '@/domain/account/enterprise/entities/user';
 import { inject, injectable } from 'tsyringe';
-import type { PrismaService } from '..';
-import { PrismaUserMapper } from '../mappers/prisma-user-mapper';
+import type { PrismaService } from '../index.ts';
+import { PrismaUserMapper } from '../mappers/prisma-user-mapper.ts';
 
 @injectable()
 export class PrismaUsersRepository implements UsersRepository {

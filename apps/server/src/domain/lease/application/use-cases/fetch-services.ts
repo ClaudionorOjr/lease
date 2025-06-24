@@ -1,7 +1,7 @@
-import { type Either, success } from '@/core/either';
+import { type Either, success } from '@/core/either.ts';
 import { inject, injectable } from 'tsyringe';
-import type { Service } from '../../enterprise/entities/service';
-import type { ServicesRepository } from '../repositories/services-repository';
+import type { Service } from '../../enterprise/entities/service.ts';
+import type { ServicesRepository } from '../repositories/services-repository.ts';
 
 type FetchServicesResponse = Either<Error, { services: Service[] }>;
 

@@ -1,11 +1,11 @@
 import 'reflect-metadata';
-import { FakeEncrypter } from '@/test/cryptography/fake-encrypter';
-import { FakeHasher } from '@/test/cryptography/fake-hasher';
-import { makeUser } from '@/test/factories/make-user';
-import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository';
+import { FakeEncrypter } from '@/test/cryptography/fake-encrypter.ts';
+import { FakeHasher } from '@/test/cryptography/fake-hasher.ts';
+import { makeUser } from '@/test/factories/make-user.ts';
+import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository.ts';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { Authenticate } from './authenticate';
-import { WrongCredentialsError } from './errors/account-errors';
+import { Authenticate } from './authenticate.ts';
+import { WrongCredentialsError } from './errors/account-errors.ts';
 
 describe('Authenticate user use case', () => {
   let usersRepository: InMemoryUsersRepository;

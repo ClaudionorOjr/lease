@@ -1,9 +1,9 @@
-import { EditService } from '@/domain/lease/application/use-cases/edit-service';
+import { EditService } from '@/domain/lease/application/use-cases/edit-service.ts';
 import { container } from 'tsyringe';
 import type {
   EditServiceReply,
   EditServiceRequest,
-} from '../../schemas/lease/edit-service-schema';
+} from '../../schemas/lease/edit-service-schema.ts';
 
 export async function editServiceController(
   request: EditServiceRequest,

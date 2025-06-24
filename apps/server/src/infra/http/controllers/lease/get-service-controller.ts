@@ -1,9 +1,9 @@
-import { GetService } from '@/domain/lease/application/use-cases/get-service';
+import { GetService } from '@/domain/lease/application/use-cases/get-service.ts';
 import { container } from 'tsyringe';
 import type {
   GetServiceReply,
   GetServiceRequest,
-} from '../../schemas/lease/get-service-schema';
+} from '../../schemas/lease/get-service-schema.ts';
 
 export async function getServiceController(
   request: GetServiceRequest,

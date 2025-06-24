@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import { InMemoryServicesRepository } from '@/test/repositories/in-memory-services-repository';
+import { InMemoryServicesRepository } from '@/test/repositories/in-memory-services-repository.ts';
 import { fakerPT_BR as faker } from '@faker-js/faker';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { RegisterService } from './register-service';
+import { RegisterService } from './register-service.ts';
 
 describe('Register service use case', () => {
   let servicesRepository: InMemoryServicesRepository;

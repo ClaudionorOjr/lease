@@ -4,7 +4,7 @@ import type {
   RouteGenericInterface,
 } from 'fastify';
 import { z } from 'zod';
-import { leaseSchema } from '../entities';
+import { leaseSchema } from '../entities/index.ts';
 
 const fetchLeasesResponseSchema = {
   200: z.object({

@@ -1,5 +1,5 @@
-import { UserFactory } from '@/test/factories/make-user';
-import { prisma, showLogs } from '@/test/setup-e2e';
+import { UserFactory } from '@/test/factories/make-user.ts';
+import { prisma, showLogs } from '@/test/setup-e2e.ts';
 import { fakerPT_BR as faker } from '@faker-js/faker';
 import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';

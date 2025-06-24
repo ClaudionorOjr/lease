@@ -1,5 +1,5 @@
-import type { SolicitationsRepository } from '@/lease/application/repositories/solicitations-repository';
-import type { Solicitation } from '@/lease/enterprise/entities/solicitation';
+import type { SolicitationsRepository } from '@/lease/application/repositories/solicitations-repository.ts';
+import type { Solicitation } from '@/lease/enterprise/entities/solicitation.ts';
 
 export class InMemorySolicitationsRepository
   implements SolicitationsRepository

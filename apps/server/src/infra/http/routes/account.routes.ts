@@ -1,27 +1,27 @@
 import type { FastifyInstance } from 'fastify';
 import type { ZodTypeProvider } from 'fastify-type-provider-zod';
 
-import { authenticateController } from '../controllers/account/authenticate-controller';
-import { deleteAccountController } from '../controllers/account/delete-account-controller';
-import { editProfileController } from '../controllers/account/edit-profile-controller';
-import { getProfileController } from '../controllers/account/get-profile-controller';
-import { registerUserController } from '../controllers/account/register-user-controller';
-import { verifyJWT } from '../middleware/verify-jwt';
+import { authenticateController } from '../controllers/account/authenticate-controller.ts';
+import { deleteAccountController } from '../controllers/account/delete-account-controller.ts';
+import { editProfileController } from '../controllers/account/edit-profile-controller.ts';
+import { getProfileController } from '../controllers/account/get-profile-controller.ts';
+import { registerUserController } from '../controllers/account/register-user-controller.ts';
+import { verifyJWT } from '../middleware/verify-jwt.ts';
 import {
   type AuthenticateRoute,
   authenticateSchema,
-} from '../schemas/account/authenticate-schema';
+} from '../schemas/account/authenticate-schema.ts';
 import {
   type DeleteAccountRoute,
   deleteAccountSchema,
-} from '../schemas/account/delete-account-schema';
+} from '../schemas/account/delete-account-schema.ts';
 import {
   type EditProfileRoute,
   editProfileSchema,
-} from '../schemas/account/edit-profile-schema';
+} from '../schemas/account/edit-profile-schema.ts';
 
-import { getProfileSchema } from '../schemas/account/get-profile-schema';
-import { registerUserSchema } from '../schemas/account/register-user-schema';
+import { getProfileSchema } from '../schemas/account/get-profile-schema.ts';
+import { registerUserSchema } from '../schemas/account/register-user-schema.ts';
 
 export async function accountRoutes(app: FastifyInstance) {
   /* Register user */

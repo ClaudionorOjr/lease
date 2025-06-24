@@ -1,5 +1,5 @@
-import type { User } from '@/account/enterprise/entities/user';
-import type { UsersRepository } from '@/domain/account/application/repositories/users-repository';
+import type { User } from '@/account/enterprise/entities/user.ts';
+import type { UsersRepository } from '@/domain/account/application/repositories/users-repository.ts';
 
 export class InMemoryUsersRepository implements UsersRepository {
   public users: User[] = [];

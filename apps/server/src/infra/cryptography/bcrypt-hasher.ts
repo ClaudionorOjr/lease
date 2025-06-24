@@ -1,4 +1,4 @@
-import type { Hasher } from '@/domain/account/application/cryptography/hasher';
+import type { Hasher } from '@/domain/account/application/cryptography/hasher.ts';
 import { compare, hash } from 'bcrypt';
 
 export class BcryptHasher implements Hasher {

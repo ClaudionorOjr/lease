@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import { makeSolicitation } from '@/test/factories/make-solicitation';
-import { InMemorySolicitationsRepository } from '@/test/repositories/in-memory-solicitations-repository';
+import { makeSolicitation } from '@/test/factories/make-solicitation.ts';
+import { InMemorySolicitationsRepository } from '@/test/repositories/in-memory-solicitations-repository.ts';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { FetchSolicitations } from './fetch-solicitations';
+import { FetchSolicitations } from './fetch-solicitations.ts';
 
 describe('Fetch solicitations use case', () => {
   let solicitationsRepository: InMemorySolicitationsRepository;

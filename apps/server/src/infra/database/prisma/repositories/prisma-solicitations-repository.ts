@@ -1,8 +1,8 @@
 import type { SolicitationsRepository } from '@/domain/lease/application/repositories/solicitations-repository';
 import type { Solicitation } from '@/domain/lease/enterprise/entities/solicitation';
 import { inject, injectable } from 'tsyringe';
-import type { PrismaService } from '..';
-import { PrismaSolicitationMapper } from '../mappers/prisma-solicitation-mapper';
+import type { PrismaService } from '../index.ts';
+import { PrismaSolicitationMapper } from '../mappers/prisma-solicitation-mapper.ts';
 
 @injectable()
 export class PrismaSolicitationsRepository implements SolicitationsRepository {

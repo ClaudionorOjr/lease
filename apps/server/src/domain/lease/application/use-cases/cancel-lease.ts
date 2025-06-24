@@ -1,6 +1,6 @@
-import { type Either, failure, success } from '@/core/either';
+import { type Either, failure, success } from '@/core/either.ts';
 import { inject, injectable } from 'tsyringe';
-import type { LeasesRepository } from '../repositories/leases-repository';
+import type { LeasesRepository } from '../repositories/leases-repository.ts';
 
 type CancelLeaseRequest = {
   leaseId: string;

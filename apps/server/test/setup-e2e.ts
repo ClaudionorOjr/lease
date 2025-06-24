@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import { execSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
-import type { DatabaseProvider } from '@/infra/database/database-provider';
-import { PrismaService } from '@/infra/database/prisma';
+import type { DatabaseProvider } from '@/infra/database/database-provider.ts';
+import { PrismaService } from '@/infra/database/prisma/index.ts';
 import { container } from 'tsyringe';
 import { afterAll, beforeAll } from 'vitest';
 

@@ -1,9 +1,9 @@
-import { GetSolicitation } from '@/domain/lease/application/use-cases/get-solicitation';
+import { GetSolicitation } from '@/domain/lease/application/use-cases/get-solicitation.ts';
 import { container } from 'tsyringe';
 import type {
   GetSolicitationReply,
   GetSolicitationRequest,
-} from '../../schemas/lease/get-solicitation-schema';
+} from '../../schemas/lease/get-solicitation-schema.ts';
 
 export async function getSolicitationController(
   request: GetSolicitationRequest,

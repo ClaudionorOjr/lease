@@ -1,9 +1,9 @@
 import 'reflect-metadata';
-import { makeService } from '@/test/factories/make-service';
+import { makeService } from '@/test/factories/make-service.ts';
 import { InMemoryServicesRepository } from '@/test/repositories/in-memory-services-repository';
 import { fakerPT_BR as faker } from '@faker-js/faker';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { EditService } from './edit-service';
+import { EditService } from './edit-service.ts';
 
 describe('Edit service use case', () => {
   let servicesRepository: InMemoryServicesRepository;

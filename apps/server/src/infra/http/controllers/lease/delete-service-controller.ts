@@ -1,9 +1,9 @@
-import { DeleteService } from '@/domain/lease/application/use-cases/delete-service';
+import { DeleteService } from '@/domain/lease/application/use-cases/delete-service.ts';
 import { container } from 'tsyringe';
 import type {
   DeleteServiceReply,
   DeleteServiceRequest,
-} from '../../schemas/lease/delete-service-schema';
+} from '../../schemas/lease/delete-service-schema.ts';
 
 export async function deleteServiceController(
   request: DeleteServiceRequest,

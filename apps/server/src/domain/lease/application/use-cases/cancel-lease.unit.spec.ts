@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import { makeLease } from '@/test/factories/make-lease';
-import { InMemoryLeasesRepository } from '@/test/repositories/in-memory-leases-repository';
+import { makeLease } from '@/test/factories/make-lease.ts';
+import { InMemoryLeasesRepository } from '@/test/repositories/in-memory-leases-repository.ts';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { CancelLease } from './cancel-lease';
+import { CancelLease } from './cancel-lease.ts';
 
 describe('Cancel lease use case', () => {
   let leasesRepository: InMemoryLeasesRepository;

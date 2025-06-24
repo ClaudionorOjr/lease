@@ -1,4 +1,4 @@
-import type { User } from '../../enterprise/entities/user';
+import type { User } from '../../enterprise/entities/user.ts';
 
 export interface UsersRepository {
   create(user: User): Promise<void>;

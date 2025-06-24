@@ -1,7 +1,7 @@
-import { FetchSolicitations } from '@/domain/lease/application/use-cases/fetch-solicitations';
+import { FetchSolicitations } from '@/domain/lease/application/use-cases/fetch-solicitations.ts';
 import type { FastifyRequest } from 'fastify';
 import { container } from 'tsyringe';
-import type { FetchSolicitationsReply } from '../../schemas/lease/fetch-solicitations-schema';
+import type { FetchSolicitationsReply } from '../../schemas/lease/fetch-solicitations-schema.ts';
 
 export async function fetchSolicitationsController(
   _request: FastifyRequest,

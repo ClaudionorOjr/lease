@@ -31,6 +31,9 @@
           "suspicious": {
             "noExplicitAny": "warn"
           },
+          "correctness": {
+            "useImportExtensions": "error"
+          },
           "style": {
             "noNonNullAssertion": "off"
           }

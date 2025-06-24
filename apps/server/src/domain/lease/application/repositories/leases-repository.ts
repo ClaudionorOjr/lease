@@ -1,4 +1,4 @@
-import type { Lease } from '../../enterprise/entities/lease';
+import type { Lease } from '../../enterprise/entities/lease.ts';
 
 export interface LeasesRepository {
   create(lease: Lease): Promise<void>;

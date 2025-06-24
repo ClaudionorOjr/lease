@@ -1,6 +1,6 @@
-import { type Either, failure, success } from '@/core/either';
+import { type Either, failure, success } from '@/core/either.ts';
 import { inject, injectable } from 'tsyringe';
-import type { ServicesRepository } from '../repositories/services-repository';
+import type { ServicesRepository } from '../repositories/services-repository.ts';
 
 type DeleteServiceRequest = {
   serviceId: string;

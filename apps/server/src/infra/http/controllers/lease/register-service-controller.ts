@@ -1,9 +1,9 @@
-import { RegisterService } from '@/domain/lease/application/use-cases/register-service';
+import { RegisterService } from '@/domain/lease/application/use-cases/register-service.ts';
 import { container } from 'tsyringe';
 import type {
   RegisterServiceReply,
   RegisterServiceRequest,
-} from '../../schemas/lease/register-service-schema';
+} from '../../schemas/lease/register-service-schema.ts';
 
 export async function registerServiceController(
   request: RegisterServiceRequest,

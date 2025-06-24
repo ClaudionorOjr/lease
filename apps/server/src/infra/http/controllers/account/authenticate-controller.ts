@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import type {
   AuthenticateReply,
   AuthenticateRequest,
-} from '../../schemas/account/authenticate-schema';
+} from '../../schemas/account/authenticate-schema.ts';
 
 export async function authenticateController(
   request: AuthenticateRequest,

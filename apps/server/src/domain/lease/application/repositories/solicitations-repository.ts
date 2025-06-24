@@ -1,4 +1,4 @@
-import type { Solicitation } from '../../enterprise/entities/solicitation';
+import type { Solicitation } from '../../enterprise/entities/solicitation.ts';
 
 export interface SolicitationsRepository {
   create(solicitation: Solicitation): Promise<void>;

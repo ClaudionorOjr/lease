@@ -1,7 +1,7 @@
-import { type Either, success } from '@/core/either';
+import { type Either, success } from '@/core/either.ts';
 import { inject, injectable } from 'tsyringe';
-import type { Solicitation } from '../../enterprise/entities/solicitation';
-import type { SolicitationsRepository } from '../repositories/solicitations-repository';
+import type { Solicitation } from '../../enterprise/entities/solicitation.ts';
+import type { SolicitationsRepository } from '../repositories/solicitations-repository.ts';
 
 // type FetchSolicitationsRequest = {
 //   page: number;

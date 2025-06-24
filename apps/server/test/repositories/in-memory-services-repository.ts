@@ -1,5 +1,5 @@
-import type { ServicesRepository } from '@/domain/lease/application/repositories/services-repository';
-import type { Service } from '@/domain/lease/enterprise/entities/service';
+import type { ServicesRepository } from '@/domain/lease/application/repositories/services-repository.ts';
+import type { Service } from '@/domain/lease/enterprise/entities/service.ts';
 
 export class InMemoryServicesRepository implements ServicesRepository {
   public services: Service[] = [];

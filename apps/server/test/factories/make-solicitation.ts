@@ -1,9 +1,9 @@
 import {
   Solicitation,
   type SolicitationProps,
-} from '@/domain/lease/enterprise/entities/solicitation';
-import type { PrismaService } from '@/infra/database/prisma';
-import { PrismaSolicitationMapper } from '@/infra/database/prisma/mappers/prisma-solicitation-mapper';
+} from '@/domain/lease/enterprise/entities/solicitation.ts';
+import type { PrismaService } from '@/infra/database/prisma/index.ts';
+import { PrismaSolicitationMapper } from '@/infra/database/prisma/mappers/prisma-solicitation-mapper.ts';
 import { fakerPT_BR as faker } from '@faker-js/faker';
 
 export function makeSolicitation(

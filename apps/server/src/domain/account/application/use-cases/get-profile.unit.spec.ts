@@ -1,9 +1,9 @@
-import 'reflect-metadata'
-import { makeUser } from '@/test/factories/make-user';
-import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository';
+import 'reflect-metadata';
+import { makeUser } from '@/test/factories/make-user.ts';
+import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository.ts';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { UserNotFoundError } from './errors/account-errors';
-import { GetProfile } from './get-profile';
+import { UserNotFoundError } from './errors/account-errors.ts';
+import { GetProfile } from './get-profile.ts';
 
 describe('Get profile use case', () => {
   let usersRepository: InMemoryUsersRepository;

@@ -1,10 +1,10 @@
 import 'reflect-metadata';
-import { FakeHasher } from '@/test/cryptography/fake-hasher';
-import { makeUser } from '@/test/factories/make-user';
-import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository';
+import { FakeHasher } from '@/test/cryptography/fake-hasher.ts';
+import { makeUser } from '@/test/factories/make-user.ts';
+import { InMemoryUsersRepository } from '@/test/repositories/in-memory-users-repository.ts';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { UserAlreadyExistsError } from './errors/account-errors';
-import { RegisterUser } from './register-user';
+import { UserAlreadyExistsError } from './errors/account-errors.ts';
+import { RegisterUser } from './register-user.ts';
 
 describe('Register user use case', () => {
   let usersRepository: InMemoryUsersRepository;

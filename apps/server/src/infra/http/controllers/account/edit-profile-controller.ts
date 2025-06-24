@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import type {
   EditProfileReply,
   EditProfileRequest,
-} from '../../schemas/account/edit-profile-schema';
+} from '../../schemas/account/edit-profile-schema.ts';
 
 export async function editProfileController(
   request: EditProfileRequest,

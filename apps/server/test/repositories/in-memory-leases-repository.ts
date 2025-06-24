@@ -1,5 +1,5 @@
-import type { LeasesRepository } from '@/domain/lease/application/repositories/leases-repository';
-import type { Lease } from '@/domain/lease/enterprise/entities/lease';
+import type { LeasesRepository } from '@/domain/lease/application/repositories/leases-repository.ts';
+import type { Lease } from '@/domain/lease/enterprise/entities/lease.ts';
 
 export class InMemoryLeasesRepository implements LeasesRepository {
   public leases: Lease[] = [];

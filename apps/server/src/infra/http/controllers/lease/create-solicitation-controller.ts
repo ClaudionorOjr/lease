@@ -1,9 +1,9 @@
-import { CreateSolicitation } from '@/domain/lease/application/use-cases/create-solicitation';
+import { CreateSolicitation } from '@/domain/lease/application/use-cases/create-solicitation.ts';
 import { container } from 'tsyringe';
 import type {
   CreateSolicitationReply,
   CreateSolicitationRequest,
-} from '../../schemas/lease/create-solicitation-schema';
+} from '../../schemas/lease/create-solicitation-schema.ts';
 
 export async function createSolicitationController(
   request: CreateSolicitationRequest,

@@ -1,9 +1,9 @@
-import { CreateLease } from '@/domain/lease/application/use-cases/create-lease';
+import { CreateLease } from '@/domain/lease/application/use-cases/create-lease.ts';
 import { container } from 'tsyringe';
 import type {
   CreateLeaseReply,
   CreateLeaseRequest,
-} from '../../schemas/lease/create-lease-schema';
+} from '../../schemas/lease/create-lease-schema.ts';
 
 export async function createLeaseController(
   request: CreateLeaseRequest,

@@ -1,7 +1,7 @@
-import { type Either, failure, success } from '@/core/either';
+import { type Either, failure, success } from '@/core/either.ts';
 import { inject, injectable } from 'tsyringe';
-import type { UsersRepository } from '../repositories/users-repository';
-import { UserNotFoundError } from './errors/account-errors';
+import type { UsersRepository } from '../repositories/users-repository.ts';
+import { UserNotFoundError } from './errors/account-errors.ts';
 
 type EditProfileRequest = {
   userId: string;

@@ -1,10 +1,10 @@
-import { LeaseFactory } from '@/test/factories/make-lease';
-import { ServiceFactory } from '@/test/factories/make-service';
-import { UserFactory } from '@/test/factories/make-user';
-import { prisma } from '@/test/setup-e2e';
+import { LeaseFactory } from '@/test/factories/make-lease.ts';
+import { ServiceFactory } from '@/test/factories/make-service.ts';
+import { UserFactory } from '@/test/factories/make-user.ts';
+import { prisma } from '@/test/setup-e2e.ts';
 import type { FastifyInstance } from 'fastify';
 import { afterAll, beforeAll, describe, expect, test } from 'vitest';
-import type { FetchLeasesResponse } from '../../schemas/lease/fetch-leases-schema';
+import type { FetchLeasesResponse } from '../../schemas/lease/fetch-leases-schema.ts';
 
 describe('Fetch leases', () => {
   let app: FastifyInstance;
