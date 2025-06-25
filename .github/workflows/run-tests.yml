@@ -6,14 +6,13 @@ on:
       - main
       - alpha
 
-defaults:
-  run:
-    working-directory: apps/server
-
 jobs:
   unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/server
 
     steps:
       - name: Checkout code
@@ -42,7 +41,31 @@ jobs:
     if: ${{ needs.unit-tests.result == 'success' }}
     runs-on: ubuntu-latest
 
-    steps:
+    services:
+      database:
+        image: bitnami/postgresql:latest
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+        options: >-
+          --health-cmd "pg_isready -U $POSTGRES_USER"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
+            
+    env:
+      DATABASE_URL: 'postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/${{ secrets.POSTGRES_DB }}'
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+      ADMIN_FULLNAME: ${{ secrets.ADMIN_FULLNAME }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      ADMIN_PHONE: ${{ secrets.ADMIN_PHONE }}
+
+    steps:    
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -56,9 +79,31 @@ jobs:
           echo "Workflow: ${{ github.workflow }}"
           echo "Workflow Run Job: ${{ github.job }}"
           echo "Workflow Run Ref: ${{ github.ref }}"
+          echo "DATABASE_URL=$DATABASE_URL"
       
       - name: Install dependencies
+        working-directory: apps/server
         run: npm ci
 
+      - name: Build @repo/env package
+        working-directory: packages/env
+        run: npm run build
+
       - name: Run e2e tests
+        working-directory: apps/server
         run: npm run test:e2e
+
+  notify-release:
+    name: Notify Release
+    needs: e2e-tests
+    if: ${{ needs.e2e-tests.result == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+
+    steps:
+      - name: Trigger Release Workflow
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Release
