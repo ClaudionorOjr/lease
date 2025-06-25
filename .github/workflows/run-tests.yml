@@ -50,11 +50,11 @@ jobs:
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-          options: >-
-            --health-cmd "pg_isready -U $POSTGRES_USER"
-            --health-interval 10s
-            --health-timeout 5s
-            --health-retries 3
+        options: >-
+          --health-cmd "pg_isready -U $POSTGRES_USER"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 3
             
     env:
       DATABASE_URL: 'postgres://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/${{ secrets.POSTGRES_DB }}'
@@ -65,7 +65,7 @@ jobs:
       ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
       ADMIN_PHONE: ${{ secrets.ADMIN_PHONE }}
 
-    steps:
+    steps:    
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -89,16 +89,22 @@ jobs:
         working-directory: packages/env
         run: npm run build
 
-      - name: Wait for DB readiness
-        working-directory: apps/server
-        run: |
-          echo "Aguardando banco de dados ficar pronto..."
-          for i in {1..10}; do
-            pg_isready -h localhost -U ${{ secrets.POSTGRES_USER }} && break
-            echo "Ainda não está pronto, tentando novamente..."
-            sleep 2
-          done
-
       - name: Run e2e tests
         working-directory: apps/server
         run: npm run test:e2e
+
+  notify-release:
+    name: Notify Release
+    needs: e2e-tests
+    if: ${{ needs.e2e-tests.result == 'success' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+
+    steps:
+      - name: Trigger Release Workflow
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Release
+    
