@@ -1,9 +1,9 @@
 'use client';
 
-import { statuses } from '@/app/(app)/solicitation/page';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import type { Solicitation } from '@/http/generated/endpoints';
+import { statuses } from '@/lib/statuses';
 import type { Table } from '@tanstack/react-table';
 import { Filter, X } from 'lucide-react';
 import { useState, useTransition } from 'react';

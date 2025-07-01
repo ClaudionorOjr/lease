@@ -1,8 +1,8 @@
-import { statuses } from '@/app/(app)/solicitation/page';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import type { Table } from '@tanstack/react-table';
 import { X } from 'lucide-react';
+import { statuses } from '../../../../lib/statuses';
 import { DataTableFacetedFilter } from './data-table-faceted-filter';
 
 interface DataTableToolbarProps<TData> {

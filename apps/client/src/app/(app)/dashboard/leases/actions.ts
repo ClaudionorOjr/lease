@@ -1,10 +1,10 @@
 'use server';
 
-import { cancelScheduling } from '@/http/schedulings/cancel-scheduling';
+import { cancelLease } from '@/http/generated/endpoints';
 import { revalidatePath } from 'next/cache';
 
-export async function cancelSchedulingAction(schedulingId: string) {
-  await cancelScheduling({ schedulingId });
+export async function cancelLeaseAction(leaseId: string) {
+  await cancelLease(leaseId);
 
-  revalidatePath('/dashboard/schedulings');
+  revalidatePath('/dashboard/leases');
 }

@@ -1,9 +1,9 @@
 import { Label } from '@/components/ui/label';
+import type { Lease } from '@/http/generated/endpoints';
 import type { Row } from '@tanstack/react-table';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import { TableCell, TableRow } from '../../../../components/ui/table';
-import { dataSchema } from '../../solicitation/columns';
 
 interface DataTableCollapsibleRowProps<TData> {
   row: Row<TData>;
@@ -16,17 +16,19 @@ export function DataTableCollapsibleRow<TData>({
 }: DataTableCollapsibleRowProps<TData>) {
   const {
     id,
-    lessor,
+    lessee,
     cpf,
     email,
     phone,
     description,
     startDate,
     endDate,
-    status,
+    serviceId,
+    createdBy,
     createdAt,
     updatedAt,
-  } = dataSchema.parse(row.original);
+    canceledAt,
+  } = row.original as Lease;
 
   return (
     <TableRow>
@@ -53,7 +55,7 @@ export function DataTableCollapsibleRow<TData>({
 
           <div className="space-y-1">
             <Label>Accept/Created by</Label>
-            <p className="text-muted-foreground">Fulano de tal</p>
+            <p className="text-muted-foreground">{createdBy}</p>
           </div>
 
           <div className="col-span-2 md:col-span-4 space-y-1">

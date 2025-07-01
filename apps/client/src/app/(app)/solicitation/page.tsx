@@ -1,20 +1,6 @@
 'use client';
 
-export const statuses = Object.keys(SolicitationStatus).map((key) => {
-  const statusKey = key as keyof typeof SolicitationStatus;
-  const label =
-    statusKey.charAt(0).toUpperCase() + statusKey.slice(1).toLowerCase();
-
-  return {
-    label,
-    value: SolicitationStatus[statusKey],
-  };
-});
-
-import {
-  type Solicitation,
-  SolicitationStatus,
-} from '@/http/generated/endpoints';
+import type { Solicitation } from '@/http/generated/endpoints';
 import { useState } from 'react';
 import { columns } from './columns';
 import { DataTable } from './data-table';

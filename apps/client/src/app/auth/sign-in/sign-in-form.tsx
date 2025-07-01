@@ -1,4 +1,5 @@
 'use client';
+import { PasswordInput } from '@/components/password-input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -49,8 +50,7 @@ export function SignInForm() {
         </div>
 
         <div className="space-y-1">
-          <Label htmlFor="password">Password</Label>
-          <Input name="password" type="password" id="password" />
+          <PasswordInput />
 
           {errors?.password && (
             <p className="text-sm font-mediumtext-red-500 dark:text-red-400">
