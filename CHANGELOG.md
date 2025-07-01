@@ -1,3 +1,10 @@
+# [1.3.0-alpha.2](https://github.com/ClaudionorOjr/lease/compare/v1.3.0-alpha.1...v1.3.0-alpha.2) (2025-07-01)
+
+
+### Bug Fixes
+
+* **client:** import fixex in client for build and change of component input to password ([1399683](https://github.com/ClaudionorOjr/lease/commit/1399683fc4bfada3a8bbabc09af1cea90348a4d5))
+
 # [1.3.0-alpha.1](https://github.com/ClaudionorOjr/lease/compare/v1.2.0...v1.3.0-alpha.1) (2025-07-01)
 
 
