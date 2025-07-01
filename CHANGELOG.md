@@ -1,3 +1,10 @@
+# [1.3.0-alpha.3](https://github.com/ClaudionorOjr/lease/compare/v1.3.0-alpha.2...v1.3.0-alpha.3) (2025-07-01)
+
+
+### Bug Fixes
+
+* **client:** generate orval endpoints before build ([b1837d1](https://github.com/ClaudionorOjr/lease/commit/b1837d1418209016d6236cc208a0b9f1fe068d98))
+
 # [1.3.0-alpha.2](https://github.com/ClaudionorOjr/lease/compare/v1.3.0-alpha.1...v1.3.0-alpha.2) (2025-07-01)
 
 
