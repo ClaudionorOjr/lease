@@ -1,3 +1,18 @@
+# [1.3.0-alpha.1](https://github.com/ClaudionorOjr/lease/compare/v1.2.0...v1.3.0-alpha.1) (2025-07-01)
+
+
+### Bug Fixes
+
+* **monorepo:** changed build to ESM ([852f8e0](https://github.com/ClaudionorOjr/lease/commit/852f8e086eb1f551c805b9758c0c4fd169310a0d))
+* **monorepo:** fix commands on database service in workflow run-tests ([50e4714](https://github.com/ClaudionorOjr/lease/commit/50e47141293296ffaf9a62149b959c7244e536ec))
+* **monorepo:** fix db service for tests ci files ([77c94d6](https://github.com/ClaudionorOjr/lease/commit/77c94d662be2758593fa43c2b57dcdd41cfc3f1d))
+* **monorepo:** update start script ([53e4ea7](https://github.com/ClaudionorOjr/lease/commit/53e4ea76701e21166738101e860061c7a303ad97))
+
+
+### Features
+
+* **client:** added orval, refactore user use cases on server and server actions on client ([3892961](https://github.com/ClaudionorOjr/lease/commit/389296149ab7f42911d3ad02a147711960ce407e))
+
 # [1.2.0](https://github.com/ClaudionorOjr/lease/compare/v1.1.0...v1.2.0) (2025-05-26)
 
 
