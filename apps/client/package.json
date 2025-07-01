@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "concurrently npm:dev:*",
     "dev:next": "npm run env:load next dev --turbopack",
-    "dev:orval": "orval -w",
+    "dev:orval": "dotenv -e ../../.env -- orval -w",
+    "prebuild": "orval -w",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

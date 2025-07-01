@@ -13,7 +13,8 @@ export interface User {
   password: string;
   phone: string;
   createdAt: string;
-  updatedAt?: string;
+  /** @nullable */
+  updatedAt?: string | null;
 }
 
 export interface Lease {
@@ -28,6 +29,9 @@ export interface Lease {
   startDate: string;
   endDate: string;
   serviceId: string;
+  leasingPriceInCents: number;
+  /** @nullable */
+  solicitationId?: string | null;
   createdBy: string;
   createdAt: string;
   /** @nullable */
@@ -64,6 +68,15 @@ export interface Solicitation {
   updatedAt?: string | null;
 }
 
+export interface Service {
+  id: string;
+  name: string;
+  /** @nullable */
+  description?: string | null;
+  priceInCents: number;
+  createdBy: string;
+}
+
 export type RegisterUserBody = {
   fullName: string;
   email: string;
@@ -96,6 +109,29 @@ export type RegisterUser500 = {
   message: string;
 };
 
+/**
+ * @nullable
+ */
+export type DeleteAccount204 = typeof DeleteAccount204[keyof typeof DeleteAccount204] | null;
+
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const DeleteAccount204 = {
+  null: 'null',
+} as const;
+
+export type DeleteAccount400 = {
+  message: string;
+};
+
+export type DeleteAccount404 = {
+  message: string;
+};
+
+export type DeleteAccount500 = {
+  message: string;
+};
+
 export type GetProfile200User = {
   id: string;
   fullName: string;
@@ -123,7 +159,7 @@ export type GetProfile500 = {
   message: string;
 };
 
-export type EditUserBody = {
+export type EditProfileBody = {
   fullName?: string;
   /** @minLength 11 */
   phone?: string;
@@ -132,46 +168,23 @@ export type EditUserBody = {
 /**
  * @nullable
  */
-export type EditUser204 = typeof EditUser204[keyof typeof EditUser204] | null;
+export type EditProfile204 = typeof EditProfile204[keyof typeof EditProfile204] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-export const EditUser204 = {
+export const EditProfile204 = {
   null: 'null',
 } as const;
 
-export type EditUser400 = {
+export type EditProfile400 = {
   message: string;
 };
 
-export type EditUser404 = {
+export type EditProfile404 = {
   message: string;
 };
 
-export type EditUser500 = {
-  message: string;
-};
-
-/**
- * @nullable
- */
-export type DeleteUser204 = typeof DeleteUser204[keyof typeof DeleteUser204] | null;
-
-
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export const DeleteUser204 = {
-  null: 'null',
-} as const;
-
-export type DeleteUser400 = {
-  message: string;
-};
-
-export type DeleteUser404 = {
-  message: string;
-};
-
-export type DeleteUser500 = {
+export type EditProfile500 = {
   message: string;
 };
 
@@ -359,28 +372,8 @@ export type CreateLease500 = {
   message: string;
 };
 
-export type FetchLeases200LeasesItem = {
-  id: string;
-  lessee: string;
-  cpf: string;
-  /** @nullable */
-  email?: string | null;
-  phone: string;
-  /** @nullable */
-  description?: string | null;
-  startDate: string;
-  endDate: string;
-  serviceId: string;
-  createdBy: string;
-  createdAt: string;
-  /** @nullable */
-  updatedAt?: string | null;
-  /** @nullable */
-  canceledAt?: string | null;
-};
-
 export type FetchLeases200 = {
-  leases: FetchLeases200LeasesItem[];
+  leases: Lease[];
 };
 
 export type FetchLeases400 = {
@@ -599,7 +592,31 @@ export const registerUser = async (registerUserBody: RegisterUserBody, options?:
 
 
 /**
- * @summary Get an user by id
+ * @summary Delete your account
+ */
+export const getDeleteAccountUrl = () => {
+
+
+  
+
+  return `http://localhost:3333/user`
+}
+
+export const deleteAccount = async ( options?: RequestInit): Promise<DeleteAccount204> => {
+  
+  return http<DeleteAccount204>(getDeleteAccountUrl(),
+  {      
+    ...options,
+    method: 'DELETE'
+    
+    
+  }
+);}
+
+
+
+/**
+ * @summary Get your profile
  */
 export const getGetProfileUrl = () => {
 
@@ -623,50 +640,25 @@ export const getProfile = async ( options?: RequestInit): Promise<GetProfile200>
 
 
 /**
- * @summary Edit an user by id
+ * @summary Edit your profile
  */
-export const getEditUserUrl = (userId: string,) => {
+export const getEditProfileUrl = () => {
 
 
   
 
-  return `http://localhost:3333/user/${userId}`
+  return `http://localhost:3333/profile`
 }
 
-export const editUser = async (userId: string,
-    editUserBody: EditUserBody, options?: RequestInit): Promise<EditUser204> => {
+export const editProfile = async (editProfileBody: EditProfileBody, options?: RequestInit): Promise<EditProfile204> => {
   
-  return http<EditUser204>(getEditUserUrl(userId),
+  return http<EditProfile204>(getEditProfileUrl(),
   {      
     ...options,
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', ...options?.headers },
     body: JSON.stringify(
-      editUserBody,)
-  }
-);}
-
-
-
-/**
- * @summary Delete an user by id
- */
-export const getDeleteUserUrl = (userId: string,) => {
-
-
-  
-
-  return `http://localhost:3333/user/${userId}`
-}
-
-export const deleteUser = async (userId: string, options?: RequestInit): Promise<DeleteUser204> => {
-  
-  return http<DeleteUser204>(getDeleteUserUrl(userId),
-  {      
-    ...options,
-    method: 'DELETE'
-    
-    
+      editProfileBody,)
   }
 );}
 
@@ -868,7 +860,7 @@ export const fetchLeases = async ( options?: RequestInit): Promise<FetchLeases20
 
 
 /**
- * @summary Cancel a scheduling
+ * @summary Cancel a lease
  */
 export const getCancelLeaseUrl = (leaseId: string,) => {
 
