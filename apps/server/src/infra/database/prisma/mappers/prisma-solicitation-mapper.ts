@@ -1,4 +1,4 @@
-import { Solicitation } from '@/domain/lease/enterprise/entities/solicitation';
+import { Solicitation } from '@/domain/lease/enterprise/entities/solicitation.ts';
 import type {
   Prisma,
   Solicitation as PrismaSolicitation,
@@ -38,6 +38,7 @@ export namespace PrismaSolicitationMapper {
    * @returns {Solicitation} - The converted `Solicitation` domain entity.
    */
 
+  // TODO Alterar no schema prisma o campo serviceId para não opcional
   export function toDomain(raw: PrismaSolicitation): Solicitation {
     return Solicitation.create(
       {
@@ -49,7 +50,7 @@ export namespace PrismaSolicitationMapper {
         status: raw.status,
         startDate: raw.startDate,
         endDate: raw.endDate,
-        serviceId: raw.serviceId,
+        serviceId: raw.serviceId!,
         createdAt: raw.createdAt,
         updatedAt: raw.updatedAt,
       },

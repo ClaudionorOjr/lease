@@ -1,4 +1,4 @@
-import type { Encrypter } from '@/domain/account/application/cryptography/encrypter';
+import type { Encrypter } from '@/domain/account/application/cryptography/encrypter.ts';
 
 export class FakeEncrypter implements Encrypter {
   async encrypt(

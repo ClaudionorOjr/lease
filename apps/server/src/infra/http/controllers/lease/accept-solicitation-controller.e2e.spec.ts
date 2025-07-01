@@ -59,7 +59,7 @@ describe('Accept solicitation', () => {
     });
 
     expect(response.statusCode).toEqual(200);
-    expect(solicitationOnDatabase).toMatchObject({
+    expect(solicitationOnDatabase!).toMatchObject({
       id: solicitation.id,
       lessee: solicitation.lessee,
       cpf: solicitation.cpf,
@@ -72,7 +72,8 @@ describe('Accept solicitation', () => {
       createdAt: solicitation.createdAt,
       updatedAt: expect.any(Date),
     });
-    expect(leaseOnDatabase).toMatchObject({
+    expect(leaseOnDatabase).not.toBeNull();
+    expect(leaseOnDatabase!).toMatchObject({
       id: expect.any(String),
       lessee: solicitation.lessee,
       cpf: solicitation.cpf,

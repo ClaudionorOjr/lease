@@ -1,4 +1,4 @@
-import { Service } from '@/domain/lease/enterprise/entities/service';
+import { Service } from '@/domain/lease/enterprise/entities/service.ts';
 import type { Prisma, Service as PrismaService } from '@prisma/client';
 
 export namespace PrismaServiceMapper {

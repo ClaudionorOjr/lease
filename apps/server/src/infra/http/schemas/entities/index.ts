@@ -1,8 +1,8 @@
-import type { SchemaType } from '@/core/types/schema-type';
-import type { UserProps } from '@/domain/account/enterprise/entities/user';
-import type { LeaseProps } from '@/domain/lease/enterprise/entities/lease';
-import type { ServiceProps } from '@/domain/lease/enterprise/entities/service';
-import type { SolicitationProps } from '@/domain/lease/enterprise/entities/solicitation';
+import type { SchemaType } from '@/core/types/schema-type.ts';
+import type { UserProps } from '@/domain/account/enterprise/entities/user.ts';
+import type { LeaseProps } from '@/domain/lease/enterprise/entities/lease.ts';
+import type { ServiceProps } from '@/domain/lease/enterprise/entities/service.ts';
+import type { SolicitationProps } from '@/domain/lease/enterprise/entities/solicitation.ts';
 import { z } from 'zod';
 
 export const userSchema = z.object({

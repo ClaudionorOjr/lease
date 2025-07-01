@@ -1,4 +1,4 @@
-import { User } from '@/domain/account/enterprise/entities/user';
+import { User } from '@/domain/account/enterprise/entities/user.ts';
 import type { Prisma, User as PrismaUser } from '@prisma/client';
 
 export namespace PrismaUserMapper {

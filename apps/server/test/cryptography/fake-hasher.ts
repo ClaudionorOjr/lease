@@ -1,4 +1,4 @@
-import type { Hasher } from '@/domain/account/application/cryptography/hasher';
+import type { Hasher } from '@/domain/account/application/cryptography/hasher.ts';
 
 export class FakeHasher implements Hasher {
   async hash(plain: string): Promise<string> {
