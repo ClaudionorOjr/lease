@@ -7,8 +7,8 @@
     "dev:next": "npm run env:load next dev --turbopack",
     "dev:orval": "dotenv -e ../../.env -- orval -w",
     "prebuild": "npm run env:load orval",
-    "build": "next build",
-    "start": "next start",
+    "build": "npm run env:load next build",
+    "start": "npm run env:load next start",
     "lint": "next lint",
     "env:load": "dotenv -e ../../.env --"
   },
