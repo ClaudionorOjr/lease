@@ -1,3 +1,10 @@
+# [1.3.0-alpha.4](https://github.com/ClaudionorOjr/lease/compare/v1.3.0-alpha.3...v1.3.0-alpha.4) (2025-07-11)
+
+
+### Bug Fixes
+
+* **monorepo:** fix next app env variable ([1a30879](https://github.com/ClaudionorOjr/lease/commit/1a3087941efeb6e904e6ef51375a8e5ef07b6ccf))
+
 # [1.3.0-alpha.3](https://github.com/ClaudionorOjr/lease/compare/v1.3.0-alpha.2...v1.3.0-alpha.3) (2025-07-01)
 
 
