@@ -14,7 +14,9 @@ export const env = createEnv({
 
     SERVER_PORT: z.coerce.number().default(3333),
   },
-  client: {},
+  client: {
+    NEXT_PUBLIC_APP_URL: z.string().url(),
+  },
   shared: {
     NEXT_PUBLIC_API_URL: z.string().url(),
   },
@@ -31,6 +33,7 @@ export const env = createEnv({
     SERVER_PORT: process.env.PORT,
 
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
   },
   emptyStringAsUndefined: true, // Trata a variável vazia como undefined
 });

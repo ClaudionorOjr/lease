@@ -35,7 +35,8 @@ app.register(fastifySwagger, {
     info: {
       title: 'Lease server',
       version: '1.0.0',
-      description: 'Lease server API',
+      description:
+        'Webapp in a monorepo with integrated front-end and back-end. Users can request rentals without logging in, and administrators manage services and schedules with authentication. The entire architecture was structured with best practices and automated tests at various levels. The application was built with robust standards and deployed on a VPS with Coolify.',
     },
     components: {
       securitySchemes: {
